@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <LogoImage>
       <Image
-        src="/assets/illustrations/logo.svg"
+        src="/illustrations/logo.svg"
         alt="zeldapi logo"
         width={100}
         height={20}
