@@ -19,7 +19,7 @@ const HamburgerMenu = () => {
       {closedMenu ? (
         <MenuButton onClick={handleClick}>
           <Image
-            src="/assets/icons/hamburger-menu.svg"
+            src="/icons/hamburger-menu.svg"
             alt="hamburger menu icon"
             width={20}
             height={20}
@@ -29,7 +29,7 @@ const HamburgerMenu = () => {
         <>
           <MenuButton onClick={handleClick}>
             <Image
-              src="/assets/icons/close-icon.svg"
+              src="/icons/close-icon.svg"
               alt="hamburger menu icon"
               width={20}
               height={20}
