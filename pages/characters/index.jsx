@@ -1,5 +1,6 @@
 import Cover from "../../components/Cover/Cover";
 import MobileHeader from "../../components/MobileHeader/MobileHeader";
+import Footer from "../../components/Footer/Footer";
 
 const Characters = () => {
   return (
@@ -7,6 +8,7 @@ const Characters = () => {
       <MobileHeader />
       <Cover titleText="Characters" />
       <h1>Characters</h1>
+      <Footer />
     </>
   );
 };
