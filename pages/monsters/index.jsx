@@ -1,13 +1,21 @@
 import Cover from "../../components/Cover/Cover";
 import MobileHeader from "../../components/MobileHeader/MobileHeader";
 import Footer from "../../components/Footer/Footer";
+import Main from "../../components/Main/Main";
 
 const Monsters = () => {
   return (
     <>
       <MobileHeader />
       <Cover titleText="Monsters" />
-      <h1>Monsters</h1>
+      <Main
+        title="monsters"
+        items={[
+          { name: "Monster 1" },
+          { name: "Monster 2" },
+          { name: "Monster 3" },
+        ]}
+      />
       <Footer />
     </>
   );
