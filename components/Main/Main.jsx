@@ -1,13 +1,17 @@
-import { MainContainer, Title } from "./styles";
-import Menu from "../Menu/Menu";
+import { MainContainer, Title } from "../IndexMain/styles";
+import { MenuItem, Menu, MenuButton } from "./styles";
 
-const Main = ({ title, categories }) => {
+const Main = ({ title, items }) => {
   return (
     <MainContainer>
       <Title>{title}</Title>
-      <nav>
-        <Menu categories={categories} />
-      </nav>
+      <Menu>
+        {items.length &&
+          items.map((item) => {
+            return <MenuItem key={item.name}>{item.name}</MenuItem>;
+          })}
+        <MenuButton>See more</MenuButton>
+      </Menu>
     </MainContainer>
   );
 };
