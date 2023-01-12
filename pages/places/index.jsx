@@ -6,13 +6,11 @@ import Main from "../../components/Main/Main";
 const Places = () => {
   return (
     <>
-      <MobileHeader />
       <Cover titleText="Places" />
       <Main
         title="Places"
         items={[{ name: "place 1" }, { name: "place 2" }, { name: "place 3" }]}
       />
-      <Footer />
     </>
   );
 };

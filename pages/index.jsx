@@ -7,7 +7,6 @@ import { mainText, menuCategories } from "../storage/storage";
 const Home = () => {
   return (
     <>
-      <MobileHeader />
       <Cover
         preTitleText="Welcome to"
         titleText="Zeldapi"
@@ -17,7 +16,6 @@ const Home = () => {
         title="What do you want to do today?"
         categories={menuCategories}
       />
-      <Footer />
     </>
   );
 };

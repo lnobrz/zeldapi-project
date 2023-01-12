@@ -6,7 +6,6 @@ import Main from "../../components/Main/Main";
 const Monsters = () => {
   return (
     <>
-      <MobileHeader />
       <Cover titleText="Monsters" />
       <Main
         title="monsters"
@@ -16,7 +15,6 @@ const Monsters = () => {
           { name: "Monster 3" },
         ]}
       />
-      <Footer />
     </>
   );
 };

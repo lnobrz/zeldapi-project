@@ -6,7 +6,6 @@ import Main from "../../components/Main/Main";
 const Characters = () => {
   return (
     <>
-      <MobileHeader />
       <Cover titleText="Characters" />
       <Main
         title="Characters"
@@ -16,7 +15,6 @@ const Characters = () => {
           { name: "Character 3" },
         ]}
       />
-      <Footer />
     </>
   );
 };

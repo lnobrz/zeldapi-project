@@ -8,9 +8,7 @@ const DetailPage = () => {
 
   return (
     <>
-      <MobileHeader />
       <h1>{characterId}</h1>
-      <Footer />
     </>
   );
 };
