@@ -47,5 +47,5 @@ export const MainText = styled.p`
   line-height: 17px;
   text-align: center;
   color: #f0f0f0;
-  margin: 26px 30px;
+  margin: 26px 30px 0px 30px;
 `;
