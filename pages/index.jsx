@@ -1,9 +1,10 @@
 import Main from "../components/Main/Main";
 import Cover from "../components/Cover/Cover";
 import MobileHeader from "../components/MobileHeader/MobileHeader";
+import Footer from "../components/Footer/Footer";
 
 const mainText =
-  "I am Lucas Nobre and I’m here to show you my frontend programming skills. In this project, you’ll be able to dive deep into the universe of The Legends of Zelda, in an application where you’ll get to know a little bit more about the characters, monsters and places of this amazing universe.";
+  "I am Lucas Nobre and I’m here to show you my frontend programming skills and, for it, I'll take you to a trip to the universe of The Legend of Zelda.";
 
 const menuCategories = [
   {
@@ -36,6 +37,7 @@ const Home = () => {
         mainText={mainText}
       />
       <Main title="What do you want to do today?" categories={menuCategories} />
+      <Footer />
     </>
   );
 };
