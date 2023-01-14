@@ -135,4 +135,29 @@ export const GlobalStyle = createGlobalStyle`
     color: #f0f0f0;
     text-decoration: none;
   }
+
+  .darkThemeBg {
+      background: linear-gradient(180deg, #032520 0%, #111d28 100%, #0b131b 100%);
+  }
+
+  .darkThemeFontColor {
+    color: #f0f0f0;
+  }
+
+  .lightThemeBg {
+    background: linear-gradient(180deg, #DFDDD3 0%, #F0F0F0 100%);
+
+  }
+
+  .lightThemeFontColor {
+    color: #0B131B;
+  }
+
+  .link {
+    text-decoration: none;
+  }
+
+  .noScroll {
+    overflow: hidden;
+  }
 `;

@@ -7,8 +7,12 @@ import {
 } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
+import { GlobalContext } from "../../storage/global";
+import { useContext } from "react";
 
 const MenuItem = ({ url, itemSubtitle, itemTitle }) => {
+  const globalContext = useContext(GlobalContext);
+
   return (
     <MenuItemContainer>
       <MenuItemDecoration>
@@ -19,10 +23,26 @@ const MenuItem = ({ url, itemSubtitle, itemTitle }) => {
           height={40}
         />
       </MenuItemDecoration>
-      <Link href={url}>
+      <Link href={url} className="link">
         <MenuItemTitleContainer>
-          <MenuItemSubtitle>{itemSubtitle}</MenuItemSubtitle>
-          <MenuItemTitle>{itemTitle}</MenuItemTitle>
+          <MenuItemSubtitle
+            className={
+              globalContext.lightTheme
+                ? "lightThemeFontColor"
+                : "darkThemeFontColor"
+            }
+          >
+            {itemSubtitle}
+          </MenuItemSubtitle>
+          <MenuItemTitle
+            className={
+              globalContext.lightTheme
+                ? "lightThemeFontColor"
+                : "darkThemeFontColor"
+            }
+          >
+            {itemTitle}
+          </MenuItemTitle>
         </MenuItemTitleContainer>
       </Link>
       <MenuItemDecoration>
