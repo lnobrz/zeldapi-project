@@ -1,6 +1,6 @@
 import { GlobalStyle } from "./globalStyles";
 import { bitter, kadwa, hyliaSerif } from "../public/fonts/fonts";
-import Header from "../components/Header/MobileHeader";
+import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { GlobalStorage } from "../storage/global";
 
