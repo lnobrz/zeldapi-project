@@ -1,7 +1,5 @@
 import IndexMain from "../components/IndexMain/IndexMain";
 import Cover from "../components/Cover/Cover";
-import MobileHeader from "../components/MobileHeader/MobileHeader";
-import Footer from "../components/Footer/Footer";
 import { mainText, menuCategories } from "../storage/storage";
 
 const Home = () => {
