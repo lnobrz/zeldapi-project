@@ -1,22 +1,38 @@
 import Cover from "../../components/Cover/Cover";
-import MobileHeader from "../../components/MobileHeader/MobileHeader";
-import Footer from "../../components/Footer/Footer";
 import Main from "../../components/Main/Main";
 
-const Monsters = () => {
+const Monsters = (props) => {
   return (
     <>
       <Cover titleText="Monsters" />
       <Main
-        title="monsters"
-        items={[
-          { name: "Monster 1" },
-          { name: "Monster 2" },
-          { name: "Monster 3" },
-        ]}
+        category="monsters"
+        title="Choose a monster"
+        items={props.monsters}
+        error={props.notFound}
       />
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  try {
+    const monsters = await fetch("https://zelda.fanapis.com/api/monsters")
+      .then((res) => res.json())
+      .then((res) => res.data);
+    return {
+      props: {
+        monsters: monsters,
+      },
+      revalidate: 86400,
+    };
+  } catch (err) {
+    return {
+      props: {
+        notFound: true,
+      },
+    };
+  }
 };
 
 export default Monsters;
