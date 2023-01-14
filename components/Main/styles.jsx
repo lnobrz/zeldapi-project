@@ -24,22 +24,29 @@ export const MenuItem = styled.li`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #f0f0f0;
+  cursor: pointer;
 `;
 
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  width: 100%;
+  margin: 50px 0px;
+  gap: 10px;
+`;
 export const MenuButton = styled.button`
   height: 65px;
   width: 80%;
-  margin: 50px 30px;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  background: #7b643a;
+  border: 2px solid #b99047;
+  background: transparent;
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #f0f0f0;
 `;
