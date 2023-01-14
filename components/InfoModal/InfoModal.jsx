@@ -1,3 +1,4 @@
+import { useEffect, useState, useCallback } from "react";
 import {
   ModalContainer,
   InfoContainer,
@@ -6,42 +7,178 @@ import {
   ItemDescription,
   ModalButton,
   ModalBackground,
+  ItemCategory,
 } from "./styles";
 import Image from "next/image";
-import { useState } from "react";
+import { GlobalContext } from "../../storage/global";
+import { useContext } from "react";
+import ErrorComponent from "../Error/ErrorComponent";
 
-const InfoModal = ({ renderModal }) => {
-  const [showModal, setShowModal] = useState(renderModal);
+const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
+  const globalContext = useContext(GlobalContext);
+  const [itemAppearances, setItemAppearances] = useState([]);
+  const [itemInhabitants, setItemInnhabitants] = useState([]);
 
-  const handleClick = () => {
-    setShowModal(false);
+  const itemDetails = item
+    ? Object.entries(item).filter(
+        (detail) =>
+          detail[0] !== "name" &&
+          detail[0] !== "description" &&
+          detail[0] !== "id" &&
+          detail[0] !== "appearances" &&
+          detail[0] !== "inhabitants"
+      )
+    : null;
+
+  const closeModal = () => {
+    renderModalSetter(false);
+    document.querySelector("body").classList.remove("noScroll");
   };
+
+  const fetchInfo = useCallback(async () => {
+    if (item) {
+      if (item.inhabitants) {
+        const inhabitantsResponse = await Promise.all(
+          item.inhabitants.map((url) =>
+            fetch(url)
+              .then((res) => res.json())
+              .then((inhabitant) => inhabitant.data)
+          )
+        );
+
+        setItemInnhabitants(inhabitantsResponse);
+      }
+
+      if (item.appearances) {
+        const appearanceResponse = await Promise.all(
+          item.appearances.map((url) =>
+            fetch(url)
+              .then((res) => res.json())
+              .then((appearance) => appearance.data)
+          )
+        );
+        setItemAppearances(appearanceResponse);
+      }
+    }
+  }, [item]);
+
+  useEffect(() => {
+    fetchInfo();
+  }, [fetchInfo]);
 
   return (
     <>
-      {showModal && (
+      {renderModal && (
         <ModalBackground>
-          <ModalContainer>
-            <ModalButton onClick={handleClick}>
+          <ModalContainer
+            className={
+              globalContext.lightTheme ? "lightThemeBg" : "darkThemeBg"
+            }
+          >
+            <ModalButton onClick={closeModal}>
               <Image
-                src="/icons/close-icon.svg"
+                src={
+                  globalContext.lightTheme
+                    ? "/icons/light-theme/light-theme-close-icon.svg"
+                    : "/icons/dark-theme/dark-theme-close-icon.svg"
+                }
                 alt="hamburger menu icon"
                 width={20}
                 height={20}
               />
             </ModalButton>
             <InfoContainer>
-              <ItemName>Fulana de Tal</ItemName>
-              <ItemInfo>Cigana</ItemInfo>
-              <ItemInfo>Sandrona</ItemInfo>
-              <ItemDescription>
-                industry. Lorem Ipsum has been the industrys standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the relea
-              </ItemDescription>
+              {error && <ErrorComponent />}
+              {item && (
+                <>
+                  <ItemName
+                    className={
+                      globalContext.lightTheme
+                        ? "lightThemeFontColor"
+                        : "darkThemeFontColor"
+                    }
+                  >
+                    {item.name}
+                  </ItemName>
+                  {itemDetails.map((detail) => (
+                    <ItemCategory
+                      key={detail[0]}
+                      c
+                      className={
+                        globalContext.lightTheme
+                          ? "lightThemeFontColor"
+                          : "darkThemeFontColor"
+                      }
+                    >
+                      {detail[0]}:
+                      <ItemInfo
+                        className={
+                          globalContext.lightTheme
+                            ? "lightThemeFontColor"
+                            : "darkThemeFontColor"
+                        }
+                      >
+                        {detail[1] ? detail[1] : "not identified"}
+                      </ItemInfo>
+                    </ItemCategory>
+                  ))}
+                  {itemAppearances && itemAppearances.length > 0 && (
+                    <ItemCategory
+                      className={
+                        globalContext.lightTheme
+                          ? "lightThemeFontColor"
+                          : "darkThemeFontColor"
+                      }
+                    >
+                      appearances:
+                      {itemAppearances.map((appearance) => (
+                        <ItemInfo
+                          key={appearance.id}
+                          className={
+                            globalContext.lightTheme
+                              ? "lightThemeFontColor"
+                              : "darkThemeFontColor"
+                          }
+                        >
+                          {appearance.name}
+                        </ItemInfo>
+                      ))}
+                    </ItemCategory>
+                  )}
+                  {itemInhabitants && itemInhabitants.length > 0 && (
+                    <ItemCategory
+                      className={
+                        globalContext.lightTheme
+                          ? "lightThemeFontColor"
+                          : "darkThemeFontColor"
+                      }
+                    >
+                      inhabitants:
+                      {itemAppearances.map((inhabitant) => (
+                        <ItemInfo
+                          key={inhabitant.id}
+                          className={
+                            globalContext.lightTheme
+                              ? "lightThemeFontColor"
+                              : "darkThemeFontColor"
+                          }
+                        >
+                          {inhabitant.name}
+                        </ItemInfo>
+                      ))}
+                    </ItemCategory>
+                  )}
+                  <ItemDescription
+                    className={
+                      globalContext.lightTheme
+                        ? "lightThemeFontColor"
+                        : "darkThemeFontColor"
+                    }
+                  >
+                    {item.description}
+                  </ItemDescription>
+                </>
+              )}
             </InfoContainer>
           </ModalContainer>
         </ModalBackground>
