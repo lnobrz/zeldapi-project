@@ -32,7 +32,6 @@ export const MenuItemSubtitle = styled.h3`
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  color: #f0f0f0;
   text-transform: capitalize;
 `;
 
@@ -42,6 +41,5 @@ export const MenuItemTitle = styled.h2`
   font-weight: 700;
   font-size: 20px;
   line-height: 40px;
-  color: #f0f0f0;
   text-transform: uppercase;
 `;

@@ -14,16 +14,21 @@ export const Menu = styled.nav`
   position: absolute;
   top: 85px;
   width: 100%;
-  height: 170px;
+  height: 40%;
   background: rgba(11, 20, 28, 0.89);
   z-index: 3;
   overflow: hidden;
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 `;
 
 export const MenuItem = styled.li`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -37,4 +42,14 @@ export const MenuItem = styled.li`
   &:first-child {
     margin-top: 0px;
   }
+`;
+
+export const DarkModeToggle = styled.button`
+  background: none;
+  width: 50px;
+  height: 50px;
+  border: none;
+  pointer-events: auto;
+  cursor: pointer;
+  margin-top: 50px;
 `;

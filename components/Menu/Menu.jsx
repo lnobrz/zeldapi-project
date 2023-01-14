@@ -4,7 +4,7 @@ import { MenuContainer } from "./styles";
 const Menu = ({ categories }) => {
   return (
     <MenuContainer>
-      {categories.length &&
+      {categories.length > 0 &&
         categories.map((category) => {
           return (
             <MenuItem
