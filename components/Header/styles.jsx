@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MobileMenu = styled.nav`
+export const HeaderContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;

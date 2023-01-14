@@ -1,6 +1,6 @@
 import { GlobalStyle } from "./globalStyles";
 import { bitter, kadwa, hyliaSerif } from "../public/fonts/fonts";
-import MobileHeader from "../components/MobileHeader/MobileHeader";
+import Header from "../components/Header/MobileHeader";
 import Footer from "../components/Footer/Footer";
 import { GlobalStorage } from "../storage/global";
 
@@ -9,7 +9,7 @@ const App = ({ Component, pageProps }) => {
     <div className={[bitter.className, kadwa.className, hyliaSerif.className]}>
       <GlobalStorage>
         <GlobalStyle />
-        <MobileHeader />
+        <Header />
         <Component {...pageProps} />
         <Footer />
       </GlobalStorage>

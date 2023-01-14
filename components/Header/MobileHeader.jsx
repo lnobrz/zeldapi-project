@@ -1,11 +1,11 @@
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import Logo from "../Logo/Logo";
-import { MobileMenu } from "./styles";
+import { HeaderContainer } from "./styles";
 import { GlobalContext } from "../../storage/global";
 import { useContext, useEffect } from "react";
 import DesktopMenu from "../DesktopMenu/DesktopMenu";
 
-const MobileHeader = () => {
+const Header = () => {
   const globalContext = useContext(GlobalContext);
 
   useEffect(() => {
@@ -14,13 +14,13 @@ const MobileHeader = () => {
   }, [globalContext]);
 
   return (
-    <MobileMenu
+    <HeaderContainer
       className={globalContext.lightTheme ? "lightThemeBg" : "darkThemeBg"}
     >
       <Logo />
       {globalContext.isMobile ? <HamburgerMenu /> : <DesktopMenu />}
-    </MobileMenu>
+    </HeaderContainer>
   );
 };
 
-export default MobileHeader;
+export default Header;
