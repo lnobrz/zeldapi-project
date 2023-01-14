@@ -42,6 +42,17 @@ export const MenuItem = styled.li`
   &:first-child {
     margin-top: 0px;
   }
+
+  @media (min-width: 744px) {
+    margin-top: 0px;
+    color: transparent;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+    &:last-child {
+      margin-top: 10px;
+    }
+  }
 `;
 
 export const DarkModeToggle = styled.button`
@@ -52,4 +63,13 @@ export const DarkModeToggle = styled.button`
   pointer-events: auto;
   cursor: pointer;
   margin-top: 50px;
+
+  @media (min-width: 744px) {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin: 30px 0px 30px 30px;
+  }
 `;
