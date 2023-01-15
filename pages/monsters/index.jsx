@@ -17,7 +17,9 @@ const Monsters = (props) => {
 
 export const getStaticProps = async () => {
   try {
-    const monsters = await fetch("https://zelda.fanapis.com/api/monsters")
+    const monsters = await fetch(
+      "https://zelda.fanapis.com/api/monsters?limit=50&page=0"
+    )
       .then((res) => res.json())
       .then((res) => res.data);
     return {

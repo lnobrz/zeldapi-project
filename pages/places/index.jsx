@@ -17,7 +17,9 @@ const Places = (props) => {
 
 export const getStaticProps = async () => {
   try {
-    const places = await fetch("https://zelda.fanapis.com/api/places")
+    const places = await fetch(
+      "https://zelda.fanapis.com/api/places?limit=50&page=0"
+    )
       .then((res) => res.json())
       .then((res) => res.data);
     return {

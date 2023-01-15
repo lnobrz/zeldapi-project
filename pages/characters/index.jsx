@@ -17,7 +17,9 @@ const Characters = (props) => {
 
 export const getStaticProps = async () => {
   try {
-    const characters = await fetch("https://zelda.fanapis.com/api/characters")
+    const characters = await fetch(
+      "https://zelda.fanapis.com/api/characters?limit=50&page=0"
+    )
       .then((res) => res.json())
       .then((res) => res.data);
     return {
