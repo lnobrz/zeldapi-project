@@ -166,7 +166,6 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     border: none;
     background: transparent;
-    color: white;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

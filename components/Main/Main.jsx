@@ -1,19 +1,12 @@
 import { MainContainer, Title } from "../IndexMain/styles";
-import {
-  MenuItem,
-  Menu,
-  MenuButton,
-  ButtonsContainer,
-  SearchBar,
-} from "./styles";
+import { MenuItem, Menu, MenuButton, ButtonsContainer } from "./styles";
 import ErrorComponent from "../Error/ErrorComponent";
 import { useState, useEffect, useContext, useCallback, useRef } from "react";
 import { GlobalContext } from "../../storage/global";
 import InfoModal from "../InfoModal/InfoModal";
-import Image from "next/image";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Main = ({ category, title, items, error }) => {
-  const input = useRef(null);
   const [fetchedItems, setFetchedItems] = useState(items);
   const [nextApiPage, setNextApiPage] = useState(1);
   const [nextSearchPage, setNextSearchPage] = useState(1);
@@ -45,6 +38,8 @@ const Main = ({ category, title, items, error }) => {
   };
 
   const fetchModalInfo = async (id) => {
+    console.log("categoria", category);
+    console.log("id", id);
     try {
       fetch(`http://zelda.fanapis.com/api/${category}/${id}`)
         .then((res) => res.json())
@@ -55,19 +50,16 @@ const Main = ({ category, title, items, error }) => {
   };
 
   const fetchNextPageInfo = async (bool) => {
-    if (maxItemQuantity >= items.length) {
+    if (maxItemQuantity >= fetchedItems.length) {
       try {
         fetch(
           `http://zelda.fanapis.com/api/${category}?limit=50&page=${nextApiPage}`
         )
           .then((res) => res.json())
-          .then((res) => setFetchedItems([...fetchedItems, ...res.data]))
-          .then((res) =>
-            setAdjustedItems((previousValue) => [
-              ...previousValue,
-              ...fetchedItems.slice(0, maxItemQuantity),
-            ])
-          );
+          .then((res) => {
+            setFetchedItems([...fetchedItems, ...res.data]);
+            return res;
+          });
         setNextApiPage((previousValue) => ++previousValue);
       } catch (err) {
         console.log(err);
@@ -102,42 +94,9 @@ const Main = ({ category, title, items, error }) => {
   };
 
   const renderModal = async (id) => {
-    fetchModalInfo(category, id);
+    fetchModalInfo(id);
     document.querySelector("body").classList.add("noScroll");
     setShowModal(true);
-  };
-
-  const handleEnterClick = (event, category) => {
-    if (event.key === "Enter") {
-      searchItem("characters");
-    }
-  };
-
-  const searchItem = useCallback(async () => {
-    setMaxItemQuantity(initialItemQuantity);
-    const itemName = document
-      .getElementById("searchInput")
-      .value.toLowerCase()
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .toString()
-      .replace(",", "%20");
-
-    fetch(`http://zelda.fanapis.com/api/${category}?name=${itemName}&limit=50`)
-      .then((res) => res.json())
-      .then((res) => {
-        setFoundItem(res.data);
-        return res;
-      });
-    setShowFoundItem(true);
-  }, [category, initialItemQuantity]);
-
-  const clickSearch = (event) => {
-    const searchButton = document.getElementById("searchButton");
-
-    if (event.key === "Enter") {
-      searchButton.click();
-    }
   };
 
   const returnToMainScreen = () => {
@@ -147,12 +106,13 @@ const Main = ({ category, title, items, error }) => {
   };
 
   useEffect(() => {
-    setAdjustedItems(items ? items.slice(0, maxItemQuantity) : null);
+    setAdjustedItems(
+      fetchedItems ? fetchedItems.slice(0, maxItemQuantity) : null
+    );
     setAdjustedFoundItems(
       foundItem ? foundItem.slice(0, maxItemQuantity) : null
     );
-    input.current.addEventListener(onkeyup, clickSearch);
-  }, [items, maxItemQuantity, searchItem, input, foundItem]);
+  }, [fetchedItems, maxItemQuantity, foundItem]);
 
   return (
     <MainContainer
@@ -177,25 +137,12 @@ const Main = ({ category, title, items, error }) => {
           >
             {title}
           </Title>
-          <SearchBar>
-            <input
-              type="text"
-              name="search"
-              id="searchInput"
-              className="teste"
-              ref={input}
-              onKeyUp={(event) => handleEnterClick(event, "characters")}
-            />
-            <Image
-              src="/icons/dark-theme/dark-theme-search-icon.svg"
-              alt="search icon"
-              width={20}
-              height={20}
-              style={{ position: "absolute", right: "30px", top: "20px" }}
-              onClick={() => searchItem("characters")}
-              id="searchButton"
-            />
-          </SearchBar>
+          <SearchBar
+            category="characters"
+            foundItemSetter={setFoundItem}
+            showFoundItemSetter={setShowFoundItem}
+            maxItemQuantitySetter={setMaxItemQuantity}
+          />
           <Menu>
             {showFoundItem &&
               adjustedFoundItems &&
