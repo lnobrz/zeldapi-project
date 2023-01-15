@@ -14,10 +14,14 @@ export const Title = styled.h1`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.5em;
   line-height: 24px;
   text-align: center;
   margin: 50px 30px;
+
+  @media (min-width: 744px) {
+    font-size: 2em;
+  }
 `;
 
 export const Menu = styled.ul`

@@ -8,6 +8,20 @@ export const Menu = styled.ul`
   align-items: center;
   justify-content: start;
   flex-flow: column wrap;
+
+  @media (min-width: 744px) {
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 80%;
+  }
+`;
+
+export const SearchBar = styled.div`
+  width: 80%;
+  height: 65px;
+  border: 2px solid #b99047;
+  margin-bottom: 30px;
+  position: relative;
 `;
 
 export const MenuItem = styled.li`
@@ -25,6 +39,11 @@ export const MenuItem = styled.li`
   font-size: 16px;
   line-height: 19px;
   cursor: pointer;
+
+  @media (min-width: 744px) {
+    width: 40%;
+    flex-flow: row wrap;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
@@ -35,6 +54,7 @@ export const ButtonsContainer = styled.div`
   margin: 50px 0px;
   gap: 10px;
 `;
+
 export const MenuButton = styled.button`
   height: 65px;
   width: 80%;
