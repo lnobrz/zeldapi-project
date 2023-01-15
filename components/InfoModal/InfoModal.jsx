@@ -88,7 +88,12 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
               />
             </ModalButton>
             <InfoContainer>
-              {error && <ErrorComponent />}
+              {error && (
+                <ErrorComponent
+                  title="SOMETHING WENT WRONG"
+                  message="Refresh the page and try again or come back later. If the problem persists, mail me at: lucasnobre37@outlook.com"
+                />
+              )}
               {item && (
                 <>
                   <ItemName
