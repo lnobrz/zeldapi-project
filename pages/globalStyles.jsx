@@ -160,4 +160,21 @@ export const GlobalStyle = createGlobalStyle`
   .noScroll {
     overflow: hidden;
   }
+  
+  #searchInput {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding-left: 30px;
+    outline: none;
+  }
+
+  .returnButton {
+    margin-bottom: 34px;
+  }
 `;
