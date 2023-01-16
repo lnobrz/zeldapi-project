@@ -5,6 +5,7 @@ export const GlobalContext = createContext();
 export const GlobalStorage = ({ children }) => {
   const [lightTheme, setLightTheme] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchThemeInfo = () => {
@@ -19,8 +20,12 @@ export const GlobalStorage = ({ children }) => {
 
   const getDevice = () => {
     window.innerWidth < 744 ? setIsMobile(true) : setIsMobile(false);
+    window.innerWidth < 1015 ? setShowMobileNav(true) : setShowMobileNav(false);
     window.addEventListener("resize", () => {
       window.innerWidth < 744 ? setIsMobile(true) : setIsMobile(false);
+      window.innerWidth < 1015
+        ? setShowMobileNav(true)
+        : setShowMobileNav(false);
     });
   };
 
@@ -35,6 +40,8 @@ export const GlobalStorage = ({ children }) => {
         setIsMobile,
         isLoading,
         setIsLoading,
+        showMobileNav,
+        setShowMobileNav,
       }}
     >
       {children}

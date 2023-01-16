@@ -18,7 +18,7 @@ const Header = () => {
       className={globalContext.lightTheme ? "lightThemeBg" : "darkThemeBg"}
     >
       <Logo />
-      {globalContext.isMobile ? <HamburgerMenu /> : <DesktopMenu />}
+      {globalContext.showMobileNav ? <HamburgerMenu /> : <DesktopMenu />}
     </HeaderContainer>
   );
 };
