@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { MenuButton, Menu, MenuItem, DarkModeToggle } from "./styles";
+import { MenuButton, Menu, MenuItem, ThemeToggle } from "./styles";
 import { menuCategories } from "../../../storage/storage";
 import { GlobalContext } from "../../../storage/global";
 import Image from "next/image";
@@ -91,7 +91,7 @@ const HamburgerMenu = () => {
                   );
                 })}
                 <MenuItem>
-                  <DarkModeToggle onClick={lightThemeToggle}>
+                  <ThemeToggle onClick={lightThemeToggle}>
                     <Image
                       src={
                         globalContext.lightTheme
@@ -102,7 +102,7 @@ const HamburgerMenu = () => {
                       width={40}
                       height={40}
                     />
-                  </DarkModeToggle>
+                  </ThemeToggle>
                   {globalContext.lightTheme ? <p>Dark</p> : <p>Light</p>}
                 </MenuItem>
               </ul>

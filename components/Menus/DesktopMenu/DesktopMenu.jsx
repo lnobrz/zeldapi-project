@@ -4,7 +4,7 @@ import { MenuItem } from "../HamburgerMenu/styles";
 import { menuCategories } from "../../../storage/storage.js";
 import Image from "next/image";
 import Link from "next/link";
-import { DarkModeToggle } from "../HamburgerMenu/styles";
+import { ThemeToggle } from "../HamburgerMenu/styles";
 import { GlobalContext } from "../../../storage/global";
 
 const DesktopMenu = () => {
@@ -51,7 +51,7 @@ const DesktopMenu = () => {
             </MenuItem>
           );
         })}
-        <DarkModeToggle onClick={lightThemeToggle}>
+        <ThemeToggle onClick={lightThemeToggle}>
           <Image
             src={
               globalContext.lightTheme
@@ -83,7 +83,7 @@ const DesktopMenu = () => {
               Light
             </MenuItem>
           )}
-        </DarkModeToggle>
+        </ThemeToggle>
       </MenuContainer>
     </nav>
   );

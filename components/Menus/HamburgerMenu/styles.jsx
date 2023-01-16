@@ -12,9 +12,9 @@ export const MenuButton = styled.button`
 
 export const Menu = styled.nav`
   position: absolute;
-  top: 85px;
+  top: 84px;
   width: 100%;
-  height: 40%;
+  height: auto;
   background: rgba(11, 20, 28, 0.89);
   z-index: 3;
   overflow: hidden;
@@ -22,6 +22,10 @@ export const Menu = styled.nav`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 744px) {
+    top: 125px;
+  }
 `;
 
 export const MenuItem = styled.li`
@@ -37,32 +41,38 @@ export const MenuItem = styled.li`
   color: #f0f0f0;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px !important;
 
   &:first-child {
-    margin-top: 0px;
+    margin-top: 40px !important;
+  }
+  &:last-child {
+    margin-bottom: 40px;
   }
 
-  @media (min-width: 744px) {
-    margin-top: 0px;
-    color: transparent;
+  @media (min-width: 1015px) {
+    margin-top: 0px !important;
+    &:first-child {
+      margin-top: 0px !important;
+    }
     &:not(:last-child) {
       margin-right: 20px;
-    }
-    &:last-child {
-      margin-top: 10px;
     }
   }
 `;
 
-export const DarkModeToggle = styled.button`
+export const ThemeToggle = styled.button`
   background: none;
   width: 50px;
   height: 50px;
   border: none;
   pointer-events: auto;
   cursor: pointer;
-  margin-top: 50px;
+  margin-top: 30px !important;
+
+  @media (min-width: 1015px) {
+    margin: 0px !important;
+  }
 
   @media (min-width: 744px) {
     display: flex;
@@ -70,6 +80,6 @@ export const DarkModeToggle = styled.button`
     align-items: center;
     margin-top: 30px;
     margin-bottom: 30px;
-    margin: 30px 0px 30px 30px;
+    margin: 0px;
   }
 `;

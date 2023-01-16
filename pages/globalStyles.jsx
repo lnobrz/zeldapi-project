@@ -161,6 +161,14 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  .footerLink {
+    color: #F0F0F0;
+
+    &:hover{
+      color: #B99047;
+    }
+  }
+
   .noScroll {
     overflow: hidden;
   }
