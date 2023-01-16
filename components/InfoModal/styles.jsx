@@ -19,7 +19,8 @@ export const ModalContainer = styled.div`
   border: 2px solid #b99047;
   position: relative;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
+  overflow-y: auto;
   justify-content: center;
 `;
 
@@ -38,6 +39,7 @@ export const ItemName = styled.h1`
   line-height: 29px;
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 50px;
 `;
 
 export const ItemCategory = styled.p`
@@ -72,6 +74,7 @@ export const ItemDescription = styled.p`
   text-align: center;
   box-sizing: border-box;
   margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 export const ModalButton = styled.button`
