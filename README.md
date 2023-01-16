@@ -16,6 +16,10 @@ Zeldapi is a SPA where you can dive deep into the universe of Legend of Zelda, s
 
 - Furthermore, if you don't to lose too much time by searching through thousands of items, you can simply use the search bar that is presented in my app
 
+## About the API
+
+All the informations presented in this site are being fetched from zelda-api, that you can read the docs here: https://docs.zelda.fanapis.com/docszelda-api
+
 ## Stacks
 
 - Javascript
