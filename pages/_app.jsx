@@ -1,4 +1,4 @@
-import { GlobalStyle } from "./globalStyles";
+import { GlobalStyle } from "../components/global/globalStyles";
 import { bitter, kadwa, hyliaSerif } from "../public/fonts/fonts";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
