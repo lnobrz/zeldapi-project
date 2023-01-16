@@ -2,6 +2,7 @@ import { useContext, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { GlobalContext } from "../../storage/global";
 import { SearchBarContainer } from "./styles";
+import { Animated } from "react-animated-css";
 
 const SearchBar = ({
   category,
@@ -14,6 +15,7 @@ const SearchBar = ({
   const initialItemQuantity = globalContext.isMobile ? 6 : 8;
 
   const searchInput = useCallback(() => {
+    globalContext.setIsLoading(true);
     maxItemQuantitySetter(initialItemQuantity);
     const inputContent = input.current.value
       .toLowerCase()
@@ -28,15 +30,18 @@ const SearchBar = ({
       .then((res) => res.json())
       .then((res) => {
         foundItemSetter(res.data);
-        return res;
+      })
+      .then(() => {
+        showFoundItemSetter(true);
+        globalContext.setIsLoading(false);
       });
-    showFoundItemSetter(true);
   }, [
     category,
     showFoundItemSetter,
     initialItemQuantity,
     foundItemSetter,
     maxItemQuantitySetter,
+    globalContext,
   ]);
 
   const handleEnterClick = (event, category) => {
@@ -58,12 +63,18 @@ const SearchBar = ({
   }, []);
 
   return (
-    <SearchBarContainer>
+    <Animated
+      animationIn="fadeIn"
+      animationOut="fadeOut"
+      isVisible={true}
+      className="searchBarContainer"
+    >
       <input
         type="text"
         name="search"
         id="searchInput"
         autoComplete="off"
+        placeholder={`Search for ${category}`}
         className={
           globalContext.lightTheme
             ? "lightThemeFontColor"
@@ -81,11 +92,16 @@ const SearchBar = ({
         alt="search icon"
         width={20}
         height={20}
-        style={{ position: "absolute", right: "30px", top: "20px" }}
+        style={{
+          position: "absolute",
+          right: "30px",
+          top: "20px",
+          cursor: "pointer",
+        }}
         onClick={() => searchInput(category)}
         id="searchButton"
       />
-    </SearchBarContainer>
+    </Animated>
   );
 };
 
