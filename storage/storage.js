@@ -4,18 +4,42 @@ export const mainText =
 export const menuCategories = [
   {
     id: 1,
+    title: "bosses",
+    subtitle: "battle",
+    url: "/bosses",
+  },
+  {
+    id: 2,
     title: "characters",
     subtitle: "meet",
     url: "/characters",
   },
   {
-    id: 2,
+    id: 3,
+    title: "dungeons",
+    subtitle: "explore",
+    url: "/dungeons",
+  },
+  {
+    id: 4,
+    title: "games",
+    subtitle: "enjoy",
+    url: "/games",
+  },
+  {
+    id: 5,
+    title: "items",
+    subtitle: "claim",
+    url: "/items",
+  },
+  {
+    id: 6,
     title: "monsters",
     subtitle: "face",
     url: "/monsters",
   },
   {
-    id: 3,
+    id: 7,
     title: "places",
     subtitle: "discover",
     url: "/places",
