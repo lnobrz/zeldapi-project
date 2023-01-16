@@ -1,8 +1,4 @@
-...
-
 # Zeldapi Project
-
-...
 
 ## A webapp where you can find everything about The Legend of Zelda's universe
 
@@ -45,11 +41,11 @@ Zeldapi is a SPA where you can dive deep into the universe of Legend of Zelda, s
 - All the code inside this repository is mine
 - This project was made for professional and educational purposes
 
+## Found bugs? Please, let me know!
+
+If you've found a bug or even has some improvement suggestions, contact me!
+
 ## Contact me!
 
 - linkedin: https://www.linkedin.com/in/lucas-nobrz/
 - email: lucasnobre37@outlook.com
-
-## Found bugs? Please, let me know!
-
-If you've found a bug or even has some improvement suggestions, contact me!
