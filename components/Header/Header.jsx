@@ -1,9 +1,9 @@
-import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
+import HamburgerMenu from "../Menus/HamburgerMenu/HamburgerMenu";
 import Logo from "../Logo/Logo";
 import { HeaderContainer } from "./styles";
 import { GlobalContext } from "../../storage/global";
 import { useContext, useEffect } from "react";
-import DesktopMenu from "../DesktopMenu/DesktopMenu";
+import DesktopMenu from "../Menus/DesktopMenu/DesktopMenu";
 
 const Header = () => {
   const globalContext = useContext(GlobalContext);

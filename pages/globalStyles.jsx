@@ -134,6 +134,10 @@ export const GlobalStyle = createGlobalStyle`
   .menuLink {
     color: #f0f0f0;
     text-decoration: none;
+
+    &:hover {
+      color: #D3AC5C;
+    }
   }
 
   .darkThemeBg {
@@ -175,5 +179,24 @@ export const GlobalStyle = createGlobalStyle`
 
   .returnButton {
     margin-bottom: 34px;
+  }
+
+  .modalContainer {
+      width: 80%;
+    height: 80%;
+    border: 2px solid #b99047;
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    overflow-y: auto;
+    justify-content: center;
+  }
+
+  .searchBarContainer {
+    width: 80%;
+    height: 65px;
+    border: 2px solid #b99047;
+    margin-bottom: 30px;
+    position: relative;
   }
 `;

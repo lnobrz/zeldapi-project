@@ -22,7 +22,7 @@ export const FooterTitle = styled.h1`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 19px;
   color: #f0f0f0;
   margin: 30px;
@@ -32,7 +32,7 @@ export const ContactItem = styled.li`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.75em;
   line-height: 14px;
   text-align: center;
   color: #f0f0f0;
@@ -50,7 +50,7 @@ export const RightsContainer = styled.div`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 500;
-  font-size: 10px;
+  font-size: 0.62em;
   line-height: 12px;
   text-align: center;
   color: #f0f0f0;

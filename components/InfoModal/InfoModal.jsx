@@ -13,6 +13,7 @@ import Image from "next/image";
 import { GlobalContext } from "../../storage/global";
 import { useContext } from "react";
 import ErrorComponent from "../Error/ErrorComponent";
+import { Animated } from "react-animated-css";
 
 const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
   const globalContext = useContext(GlobalContext);
@@ -70,10 +71,13 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
     <>
       {renderModal && (
         <ModalBackground>
-          <ModalContainer
-            className={
+          <Animated
+            animationIn="fadeIn"
+            animationOut="fadeOut"
+            isVisible={true}
+            className={`${
               globalContext.lightTheme ? "lightThemeBg" : "darkThemeBg"
-            }
+            } modalContainer`}
           >
             <ModalButton onClick={closeModal}>
               <Image
@@ -128,50 +132,62 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
                     </ItemCategory>
                   ))}
                   {itemAppearances && itemAppearances.length > 0 && (
-                    <ItemCategory
-                      className={
-                        globalContext.lightTheme
-                          ? "lightThemeFontColor"
-                          : "darkThemeFontColor"
-                      }
+                    <Animated
+                      animationIn="fadeIn"
+                      animationOut="fadeOut"
+                      isVisible={true}
                     >
-                      appearances:
-                      {itemAppearances.map((appearance) => (
-                        <ItemInfo
-                          key={appearance.id}
-                          className={
-                            globalContext.lightTheme
-                              ? "lightThemeFontColor"
-                              : "darkThemeFontColor"
-                          }
-                        >
-                          {appearance.name}
-                        </ItemInfo>
-                      ))}
-                    </ItemCategory>
+                      <ItemCategory
+                        className={
+                          globalContext.lightTheme
+                            ? "lightThemeFontColor"
+                            : "darkThemeFontColor"
+                        }
+                      >
+                        appearances:
+                        {itemAppearances.map((appearance) => (
+                          <ItemInfo
+                            key={appearance.id}
+                            className={
+                              globalContext.lightTheme
+                                ? "lightThemeFontColor"
+                                : "darkThemeFontColor"
+                            }
+                          >
+                            {appearance.name}
+                          </ItemInfo>
+                        ))}
+                      </ItemCategory>
+                    </Animated>
                   )}
                   {itemInhabitants && itemInhabitants.length > 0 && (
-                    <ItemCategory
-                      className={
-                        globalContext.lightTheme
-                          ? "lightThemeFontColor"
-                          : "darkThemeFontColor"
-                      }
+                    <Animated
+                      animationIn="fadeIn"
+                      animationOut="fadeOut"
+                      isVisible={true}
                     >
-                      inhabitants:
-                      {itemAppearances.map((inhabitant) => (
-                        <ItemInfo
-                          key={inhabitant.id}
-                          className={
-                            globalContext.lightTheme
-                              ? "lightThemeFontColor"
-                              : "darkThemeFontColor"
-                          }
-                        >
-                          {inhabitant.name}
-                        </ItemInfo>
-                      ))}
-                    </ItemCategory>
+                      <ItemCategory
+                        className={
+                          globalContext.lightTheme
+                            ? "lightThemeFontColor"
+                            : "darkThemeFontColor"
+                        }
+                      >
+                        inhabitants:
+                        {itemAppearances.map((inhabitant) => (
+                          <ItemInfo
+                            key={inhabitant.id}
+                            className={
+                              globalContext.lightTheme
+                                ? "lightThemeFontColor"
+                                : "darkThemeFontColor"
+                            }
+                          >
+                            {inhabitant.name}
+                          </ItemInfo>
+                        ))}
+                      </ItemCategory>
+                    </Animated>
                   )}
                   <ItemDescription
                     className={
@@ -185,7 +201,7 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
                 </>
               )}
             </InfoContainer>
-          </ModalContainer>
+          </Animated>
         </ModalBackground>
       )}
     </>

@@ -11,6 +11,7 @@ export const ModalBackground = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 3;
+  background: rgba(0, 0, 0, 0.8);
 `;
 
 export const ModalContainer = styled.div`
@@ -35,18 +36,18 @@ export const ItemName = styled.h1`
   font-family: "Bitter";
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.5em;
   line-height: 29px;
   text-align: center;
   margin-bottom: 20px;
   margin-top: 50px;
 `;
 
-export const ItemCategory = styled.p`
+export const ItemCategory = styled.div`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 900;
-  font-size: 12px;
+  font-size: 0.75em;
   text-transform: uppercase;
   line-height: 14px;
   text-align: center;
@@ -56,7 +57,7 @@ export const ItemCategory = styled.p`
 export const ItemInfo = styled.p`
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.75em;
   line-height: 14px;
   text-align: center;
   margin: 10px 0px;
@@ -69,7 +70,7 @@ export const ItemDescription = styled.p`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 19px;
   text-align: center;
   box-sizing: border-box;
@@ -85,7 +86,7 @@ export const ModalButton = styled.button`
   pointer-events: auto;
   cursor: pointer;
   align-self: flex-end;
-  position: absolute;
+  position: fixed;
   top: 30px;
   right: 30px;
 `;

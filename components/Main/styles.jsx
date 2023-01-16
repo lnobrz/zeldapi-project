@@ -36,9 +36,13 @@ export const MenuItem = styled.li`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 19px;
   cursor: pointer;
+
+  &:hover {
+    border: 2px solid #d3ac5c;
+  }
 
   @media (min-width: 744px) {
     width: 40%;
@@ -67,6 +71,11 @@ export const MenuButton = styled.button`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 19px;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid #d3ac5c;
+  }
 `;

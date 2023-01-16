@@ -8,7 +8,7 @@ export const LoaderContainer = styled.h1`
   align-items: center;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25em;
   line-height: 24px;
   text-align: center;
   height: 100vh;

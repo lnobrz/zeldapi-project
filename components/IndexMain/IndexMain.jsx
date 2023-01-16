@@ -1,7 +1,8 @@
 import { MainContainer, Title } from "./styles";
-import Menu from "../Menu/Menu";
+import IndexMenu from "../Menus/IndexMenu/IndexMenu";
 import { GlobalContext } from "../../storage/global";
 import { useContext } from "react";
+import { Animated } from "react-animated-css";
 
 const IndexMain = ({ title, categories }) => {
   const globalContext = useContext(GlobalContext);
@@ -10,18 +11,20 @@ const IndexMain = ({ title, categories }) => {
     <MainContainer
       className={globalContext.lightTheme ? "lightThemeBg" : "darkThemeBg"}
     >
-      <Title
-        className={
-          globalContext.lightTheme
-            ? "lightThemeFontColor"
-            : "darkThemeFontColor"
-        }
-      >
-        {title}
-      </Title>
-      <nav>
-        <Menu categories={categories} />
-      </nav>
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        <Title
+          className={
+            globalContext.lightTheme
+              ? "lightThemeFontColor"
+              : "darkThemeFontColor"
+          }
+        >
+          {title}
+        </Title>
+        <nav>
+          <IndexMenu categories={categories} />
+        </nav>
+      </Animated>
     </MainContainer>
   );
 };

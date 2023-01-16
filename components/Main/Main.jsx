@@ -7,6 +7,7 @@ import { MainContainer, Title } from "../IndexMain/styles";
 import { MenuItem, Menu, MenuButton, ButtonsContainer } from "./styles";
 import { GlobalContext } from "../../storage/global";
 import Loader from "../Loader/Loader";
+import { Animated } from "react-animated-css";
 
 const Main = ({ category, title, items, error }) => {
   const globalContext = useContext(GlobalContext);
@@ -17,9 +18,9 @@ const Main = ({ category, title, items, error }) => {
   const [summarizedItems, setSummarizedItems] = useState(
     fetchedItems ? fetchedItems.slice(0, maxDisplayedItemsAmount) : null
   );
-  const [foundItems, setFoundItems] = useState([]);
+  const [foundItems, setFoundItems] = useState(null);
   const [summarizedFoundItems, setSummarizedFoundItems] = useState(
-    foundItems ? foundItems.slice(0, maxDisplayedItemsAmount) : []
+    foundItems ? foundItems.slice(0, maxDisplayedItemsAmount) : null
   );
   const [chosenItem, setChosenItem] = useState(undefined);
   const [nextApiPage, setNextApiPage] = useState(1);
@@ -123,7 +124,7 @@ const Main = ({ category, title, items, error }) => {
     setSummarizedFoundItems(
       foundItems ? foundItems.slice(0, maxDisplayedItemsAmount) : null
     );
-  }, [fetchedItems, maxDisplayedItemsAmount, foundItems]);
+  }, [fetchedItems, foundItems, maxDisplayedItemsAmount]);
 
   return (
     <MainContainer
@@ -141,17 +142,24 @@ const Main = ({ category, title, items, error }) => {
         summarizedItems &&
         summarizedItems.length > 0 && (
           <>
-            <Title
-              className={
-                globalContext.lightTheme
-                  ? "lightThemeFontColor"
-                  : "darkThemeFontColor"
-              }
+            <Animated
+              animationIn="fadeIn"
+              animationOut="fadeOut"
+              isVisible={true}
             >
-              {title}
-            </Title>
+              <Title
+                className={
+                  globalContext.lightTheme
+                    ? "lightThemeFontColor"
+                    : "darkThemeFontColor"
+                }
+              >
+                {title}
+              </Title>
+            </Animated>
+
             <SearchBar
-              category="characters"
+              category={category}
               foundItemSetter={setFoundItems}
               showFoundItemSetter={setShowFoundItems}
               maxItemQuantitySetter={setMaxDisplayedItemsAmount}
