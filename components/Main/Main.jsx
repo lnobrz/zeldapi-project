@@ -1,45 +1,45 @@
-import { MainContainer, Title } from "../IndexMain/styles";
-import { MenuItem, Menu, MenuButton, ButtonsContainer } from "./styles";
+import { useState, useEffect, useContext } from "react";
 import ErrorComponent from "../Error/ErrorComponent";
-import { useState, useEffect, useContext, useCallback, useRef } from "react";
-import { GlobalContext } from "../../storage/global";
 import InfoModal from "../InfoModal/InfoModal";
 import SearchBar from "../SearchBar/SearchBar";
+import SearchResults from "../SearchResults/SearchResults";
+import { MainContainer, Title } from "../IndexMain/styles";
+import { MenuItem, Menu, MenuButton, ButtonsContainer } from "./styles";
+import { GlobalContext } from "../../storage/global";
 
 const Main = ({ category, title, items, error }) => {
-  const [fetchedItems, setFetchedItems] = useState(items);
-  const [nextApiPage, setNextApiPage] = useState(1);
-  const [nextSearchPage, setNextSearchPage] = useState(1);
   const globalContext = useContext(GlobalContext);
-  const initialItemQuantity = globalContext.isMobile ? 6 : 8;
-  const [maxItemQuantity, setMaxItemQuantity] = useState(initialItemQuantity);
-  const [adjustedItems, setAdjustedItems] = useState(
-    fetchedItems ? fetchedItems.slice(0, maxItemQuantity) : null
+  const displayedItemsAmount = globalContext.isMobile ? 6 : 8;
+  const [maxDisplayedItemsAmount, setMaxDisplayedItemsAmount] =
+    useState(displayedItemsAmount);
+  const [fetchedItems, setFetchedItems] = useState(items);
+  const [summarizedItems, setSummarizedItems] = useState(
+    fetchedItems ? fetchedItems.slice(0, maxDisplayedItemsAmount) : null
+  );
+  const [foundItems, setFoundItems] = useState([]);
+  const [summarizedFoundItems, setSummarizedFoundItems] = useState(
+    foundItems ? foundItems.slice(0, maxDisplayedItemsAmount) : []
   );
   const [chosenItem, setChosenItem] = useState(undefined);
+  const [nextApiPage, setNextApiPage] = useState(1);
+  const [nextSearchPage, setNextSearchPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const [foundItem, setFoundItem] = useState([]);
-  const [adjustedFoundItems, setAdjustedFoundItems] = useState(
-    foundItem ? foundItem.slice(0, maxItemQuantity) : []
-  );
-  const [showFoundItem, setShowFoundItem] = useState(false);
+  const [showFoundItems, setShowFoundItems] = useState(false);
 
   const showItemsToggle = (bool) => {
     if (bool === true) {
-      setMaxItemQuantity(
-        (previousValue) => previousValue + initialItemQuantity
+      setMaxDisplayedItemsAmount(
+        (previousValue) => previousValue + displayedItemsAmount
       );
     }
-    if (bool === false && maxItemQuantity >= initialItemQuantity * 2) {
-      setMaxItemQuantity(
-        (previousValue) => previousValue - initialItemQuantity
+    if (bool === false && maxDisplayedItemsAmount >= displayedItemsAmount * 2) {
+      setMaxDisplayedItemsAmount(
+        (previousValue) => previousValue - displayedItemsAmount
       );
     }
   };
 
   const fetchModalInfo = async (id) => {
-    console.log("categoria", category);
-    console.log("id", id);
     try {
       fetch(`http://zelda.fanapis.com/api/${category}/${id}`)
         .then((res) => res.json())
@@ -49,8 +49,8 @@ const Main = ({ category, title, items, error }) => {
     }
   };
 
-  const fetchNextPageInfo = async (bool) => {
-    if (maxItemQuantity >= fetchedItems.length) {
+  const fetchMoreItems = async (bool) => {
+    if (maxDisplayedItemsAmount >= fetchedItems.length) {
       try {
         fetch(
           `http://zelda.fanapis.com/api/${category}?limit=50&page=${nextApiPage}`
@@ -69,8 +69,8 @@ const Main = ({ category, title, items, error }) => {
     showItemsToggle(bool);
   };
 
-  const fetchNextSearchInfo = (bool) => {
-    if (maxItemQuantity >= foundItem.length) {
+  const searchMoreItems = (bool) => {
+    if (maxDisplayedItemsAmount >= foundItems.length) {
       const itemName = document
         .getElementById("searchInput")
         .value.toLowerCase()
@@ -83,7 +83,7 @@ const Main = ({ category, title, items, error }) => {
           `http://zelda.fanapis.com/api/${category}?name=${itemName}&limit=50&page=${nextSearchPage}`
         )
           .then((res) => res.json())
-          .then((res) => setFoundItem([...foundItem, ...res.data]));
+          .then((res) => setFoundItems([...foundItems, ...res.data]));
         setNextSearchPage((previousValue) => ++previousValue);
       } catch (err) {
         console.log(err);
@@ -99,20 +99,20 @@ const Main = ({ category, title, items, error }) => {
     setShowModal(true);
   };
 
-  const returnToMainScreen = () => {
-    input.current.value = "";
-    setFoundItem(null);
-    setShowFoundItem(false);
+  const returnToMainMenu = (inputRef) => {
+    document.getElementById("searchInput").value = "";
+    setFoundItems(null);
+    setShowFoundItems(false);
   };
 
   useEffect(() => {
-    setAdjustedItems(
-      fetchedItems ? fetchedItems.slice(0, maxItemQuantity) : null
+    setSummarizedItems(
+      fetchedItems ? fetchedItems.slice(0, maxDisplayedItemsAmount) : null
     );
-    setAdjustedFoundItems(
-      foundItem ? foundItem.slice(0, maxItemQuantity) : null
+    setSummarizedFoundItems(
+      foundItems ? foundItems.slice(0, maxDisplayedItemsAmount) : null
     );
-  }, [fetchedItems, maxItemQuantity, foundItem]);
+  }, [fetchedItems, maxDisplayedItemsAmount, foundItems]);
 
   return (
     <MainContainer
@@ -126,7 +126,7 @@ const Main = ({ category, title, items, error }) => {
           error={chosenItem ? false : true}
         />
       )}
-      {adjustedItems && adjustedItems.length > 0 && (
+      {summarizedItems && summarizedItems.length > 0 && (
         <>
           <Title
             className={
@@ -139,78 +139,27 @@ const Main = ({ category, title, items, error }) => {
           </Title>
           <SearchBar
             category="characters"
-            foundItemSetter={setFoundItem}
-            showFoundItemSetter={setShowFoundItem}
-            maxItemQuantitySetter={setMaxItemQuantity}
+            foundItemSetter={setFoundItems}
+            showFoundItemSetter={setShowFoundItems}
+            maxItemQuantitySetter={setMaxDisplayedItemsAmount}
           />
           <Menu>
-            {showFoundItem &&
-              adjustedFoundItems &&
-              adjustedFoundItems.length > 0 && (
-                <>
-                  {adjustedFoundItems.map((item) => {
-                    return (
-                      <>
-                        <MenuItem
-                          key={item.id}
-                          onClick={() => renderModal(item.id)}
-                          className={
-                            globalContext.lightTheme
-                              ? "lightThemeFontColor"
-                              : "darkThemeFontColor"
-                          }
-                        >
-                          {item.name}
-                        </MenuItem>
-                      </>
-                    );
-                  })}
-                  <ButtonsContainer>
-                    {foundItem && foundItem.length > maxItemQuantity && (
-                      <MenuButton
-                        className={
-                          globalContext.lightTheme
-                            ? "lightThemeFontColor"
-                            : "darkThemeFontColor"
-                        }
-                        onClick={() => fetchNextSearchInfo(true)}
-                      >
-                        See more
-                      </MenuButton>
-                    )}
-
-                    {maxItemQuantity > initialItemQuantity && (
-                      <MenuButton
-                        className={
-                          globalContext.lightTheme
-                            ? "lightThemeFontColor"
-                            : "darkThemeFontColor"
-                        }
-                        onClick={() => {
-                          fetchNextSearchInfo(false);
-                        }}
-                      >
-                        See less
-                      </MenuButton>
-                    )}
-                    <MenuButton
-                      className={[
-                        globalContext.lightTheme
-                          ? "lightThemeFontColor"
-                          : "darkThemeFontColor",
-                        "returnButton",
-                      ]}
-                      onClick={returnToMainScreen}
-                    >
-                      Return
-                    </MenuButton>
-                  </ButtonsContainer>
-                </>
+            {showFoundItems &&
+              summarizedFoundItems &&
+              summarizedFoundItems.length > 0 && (
+                <SearchResults
+                  generalResults={foundItems}
+                  summarizedResults={summarizedFoundItems}
+                  renderModalFunction={renderModal}
+                  initialDisplayedItemsAmount={displayedItemsAmount}
+                  maxDisplayedItemsAmount={maxDisplayedItemsAmount}
+                  searchMoreItemsFunction={searchMoreItems}
+                  returnToPreviousPageFunction={returnToMainMenu}
+                />
               )}
-
-            {showFoundItem &&
-              adjustedFoundItems &&
-              adjustedFoundItems.length === 0 && (
+            {showFoundItems &&
+              summarizedFoundItems &&
+              summarizedFoundItems.length === 0 && (
                 <>
                   <ErrorComponent
                     title="NOT FOUND"
@@ -218,9 +167,9 @@ const Main = ({ category, title, items, error }) => {
                   />
                 </>
               )}
-            {!showFoundItem &&
-              adjustedItems &&
-              adjustedItems.map((item) => {
+            {!showFoundItems &&
+              summarizedItems &&
+              summarizedItems.map((item) => {
                 return (
                   <MenuItem
                     key={item.id}
@@ -236,7 +185,7 @@ const Main = ({ category, title, items, error }) => {
                 );
               })}
           </Menu>
-          {!showFoundItem && adjustedItems && (
+          {!showFoundItems && summarizedItems && (
             <ButtonsContainer>
               <MenuButton
                 className={
@@ -245,12 +194,12 @@ const Main = ({ category, title, items, error }) => {
                     : "darkThemeFontColor"
                 }
                 onClick={() => {
-                  fetchNextPageInfo(true);
+                  fetchMoreItems(true);
                 }}
               >
                 See more
               </MenuButton>
-              {maxItemQuantity > initialItemQuantity && (
+              {maxDisplayedItemsAmount > displayedItemsAmount && (
                 <MenuButton
                   className={
                     globalContext.lightTheme
@@ -258,7 +207,7 @@ const Main = ({ category, title, items, error }) => {
                       : "darkThemeFontColor"
                   }
                   onClick={() => {
-                    fetchNextPageInfo(false);
+                    fetchMoreItems(false);
                   }}
                 >
                   See less
