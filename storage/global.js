@@ -5,6 +5,7 @@ export const GlobalContext = createContext();
 export const GlobalStorage = ({ children }) => {
   const [lightTheme, setLightTheme] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchThemeInfo = () => {
     if (typeof window !== undefined) {
@@ -31,6 +32,8 @@ export const GlobalStorage = ({ children }) => {
         getDevice,
         isMobile,
         setIsMobile,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

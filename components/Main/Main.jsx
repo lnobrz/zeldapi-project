@@ -6,6 +6,7 @@ import SearchResults from "../SearchResults/SearchResults";
 import { MainContainer, Title } from "../IndexMain/styles";
 import { MenuItem, Menu, MenuButton, ButtonsContainer } from "./styles";
 import { GlobalContext } from "../../storage/global";
+import Loader from "../Loader/Loader";
 
 const Main = ({ category, title, items, error }) => {
   const globalContext = useContext(GlobalContext);
@@ -39,11 +40,17 @@ const Main = ({ category, title, items, error }) => {
     }
   };
 
-  const fetchModalInfo = async (id) => {
+  const fetchModalInfo = (id) => {
     try {
+      globalContext.setIsLoading(true);
       fetch(`http://zelda.fanapis.com/api/${category}/${id}`)
         .then((res) => res.json())
-        .then((res) => setChosenItem(res.data));
+        .then((res) => {
+          setChosenItem(res.data);
+          return res;
+        })
+        .then((res) => console.log(res.data, res))
+        .then(() => globalContext.setIsLoading(false));
     } catch (err) {
       console.log(err);
     }
@@ -51,6 +58,7 @@ const Main = ({ category, title, items, error }) => {
 
   const fetchMoreItems = async (bool) => {
     if (maxDisplayedItemsAmount >= fetchedItems.length) {
+      globalContext.setIsLoading(true);
       try {
         fetch(
           `http://zelda.fanapis.com/api/${category}?limit=50&page=${nextApiPage}`
@@ -59,7 +67,8 @@ const Main = ({ category, title, items, error }) => {
           .then((res) => {
             setFetchedItems([...fetchedItems, ...res.data]);
             return res;
-          });
+          })
+          .then(() => globalContext.setIsLoading(false));
         setNextApiPage((previousValue) => ++previousValue);
       } catch (err) {
         console.log(err);
@@ -71,6 +80,7 @@ const Main = ({ category, title, items, error }) => {
 
   const searchMoreItems = (bool) => {
     if (maxDisplayedItemsAmount >= foundItems.length) {
+      globalContext.setIsLoading(true);
       const itemName = document
         .getElementById("searchInput")
         .value.toLowerCase()
@@ -83,7 +93,8 @@ const Main = ({ category, title, items, error }) => {
           `http://zelda.fanapis.com/api/${category}?name=${itemName}&limit=50&page=${nextSearchPage}`
         )
           .then((res) => res.json())
-          .then((res) => setFoundItems([...foundItems, ...res.data]));
+          .then((res) => setFoundItems([...foundItems, ...res.data]))
+          .then(() => globalContext.setIsLoading(false));
         setNextSearchPage((previousValue) => ++previousValue);
       } catch (err) {
         console.log(err);
@@ -93,13 +104,13 @@ const Main = ({ category, title, items, error }) => {
     showItemsToggle(bool);
   };
 
-  const renderModal = async (id) => {
+  const renderModal = (id) => {
     fetchModalInfo(id);
-    document.querySelector("body").classList.add("noScroll");
     setShowModal(true);
+    document.querySelector("body").classList.add("noScroll");
   };
 
-  const returnToMainMenu = (inputRef) => {
+  const returnToMainMenu = () => {
     document.getElementById("searchInput").value = "";
     setFoundItems(null);
     setShowFoundItems(false);
@@ -118,7 +129,7 @@ const Main = ({ category, title, items, error }) => {
     <MainContainer
       className={globalContext.lightTheme ? "lightThemeBg" : "darkThemeColoBg"}
     >
-      {showModal && chosenItem && (
+      {!globalContext.isLoading && showModal && chosenItem && (
         <InfoModal
           renderModal={showModal}
           renderModalSetter={setShowModal}
@@ -126,80 +137,72 @@ const Main = ({ category, title, items, error }) => {
           error={chosenItem ? false : true}
         />
       )}
-      {summarizedItems && summarizedItems.length > 0 && (
-        <>
-          <Title
-            className={
-              globalContext.lightTheme
-                ? "lightThemeFontColor"
-                : "darkThemeFontColor"
-            }
-          >
-            {title}
-          </Title>
-          <SearchBar
-            category="characters"
-            foundItemSetter={setFoundItems}
-            showFoundItemSetter={setShowFoundItems}
-            maxItemQuantitySetter={setMaxDisplayedItemsAmount}
-          />
-          <Menu>
-            {showFoundItems &&
-              summarizedFoundItems &&
-              summarizedFoundItems.length > 0 && (
-                <SearchResults
-                  generalResults={foundItems}
-                  summarizedResults={summarizedFoundItems}
-                  renderModalFunction={renderModal}
-                  initialDisplayedItemsAmount={displayedItemsAmount}
-                  maxDisplayedItemsAmount={maxDisplayedItemsAmount}
-                  searchMoreItemsFunction={searchMoreItems}
-                  returnToPreviousPageFunction={returnToMainMenu}
-                />
-              )}
-            {showFoundItems &&
-              summarizedFoundItems &&
-              summarizedFoundItems.length === 0 && (
-                <>
-                  <ErrorComponent
-                    title="NOT FOUND"
-                    message="The item you’re searching for doesn’t exists in our database. If you’re sure it exists, make sure you’ve typed it correctly."
+      {!globalContext.isLoading &&
+        summarizedItems &&
+        summarizedItems.length > 0 && (
+          <>
+            <Title
+              className={
+                globalContext.lightTheme
+                  ? "lightThemeFontColor"
+                  : "darkThemeFontColor"
+              }
+            >
+              {title}
+            </Title>
+            <SearchBar
+              category="characters"
+              foundItemSetter={setFoundItems}
+              showFoundItemSetter={setShowFoundItems}
+              maxItemQuantitySetter={setMaxDisplayedItemsAmount}
+            />
+            <Menu>
+              {!globalContext.isLoading &&
+                showFoundItems &&
+                summarizedFoundItems &&
+                summarizedFoundItems.length > 0 && (
+                  <SearchResults
+                    generalResults={foundItems}
+                    summarizedResults={summarizedFoundItems}
+                    renderModalFunction={renderModal}
+                    initialDisplayedItemsAmount={displayedItemsAmount}
+                    maxDisplayedItemsAmount={maxDisplayedItemsAmount}
+                    searchMoreItemsFunction={searchMoreItems}
+                    returnToPreviousPageFunction={returnToMainMenu}
                   />
-                </>
-              )}
-            {!showFoundItems &&
-              summarizedItems &&
-              summarizedItems.map((item) => {
-                return (
-                  <MenuItem
-                    key={item.id}
-                    onClick={() => renderModal(item.id)}
-                    className={
-                      globalContext.lightTheme
-                        ? "lightThemeFontColor"
-                        : "darkThemeFontColor"
-                    }
-                  >
-                    {item.name}
-                  </MenuItem>
-                );
-              })}
-          </Menu>
-          {!showFoundItems && summarizedItems && (
-            <ButtonsContainer>
-              <MenuButton
-                className={
-                  globalContext.lightTheme
-                    ? "lightThemeFontColor"
-                    : "darkThemeFontColor"
-                }
-                onClick={() => {
-                  fetchMoreItems(true);
-                }}
-              >
-                See more
-              </MenuButton>
-              {maxDisplayedItemsAmount > displayedItemsAmount && (
+                )}
+              {!globalContext.isLoading &&
+                showFoundItems &&
+                summarizedFoundItems &&
+                summarizedFoundItems.length === 0 && (
+                  <>
+                    <ErrorComponent
+                      title="NOT FOUND"
+                      message="The item you’re searching for doesn’t exists in our database. If you’re sure it exists, make sure you’ve typed it correctly."
+                    />
+                  </>
+                )}
+              {!globalContext.isLoading &&
+                !showFoundItems &&
+                summarizedItems &&
+                summarizedItems.map((item) => {
+                  return (
+                    <MenuItem
+                      key={item.id}
+                      onClick={() => renderModal(item.id)}
+                      className={
+                        globalContext.lightTheme
+                          ? "lightThemeFontColor"
+                          : "darkThemeFontColor"
+                      }
+                    >
+                      {item.name}
+                    </MenuItem>
+                  );
+                })}
+            </Menu>
+            {!globalContext.isLoading && !showFoundItems && summarizedItems && (
+              <ButtonsContainer>
                 <MenuButton
                   className={
                     globalContext.lightTheme
@@ -207,16 +210,30 @@ const Main = ({ category, title, items, error }) => {
                       : "darkThemeFontColor"
                   }
                   onClick={() => {
-                    fetchMoreItems(false);
+                    fetchMoreItems(true);
                   }}
                 >
-                  See less
+                  See more
                 </MenuButton>
-              )}
-            </ButtonsContainer>
-          )}
-        </>
-      )}
+                {maxDisplayedItemsAmount > displayedItemsAmount && (
+                  <MenuButton
+                    className={
+                      globalContext.lightTheme
+                        ? "lightThemeFontColor"
+                        : "darkThemeFontColor"
+                    }
+                    onClick={() => {
+                      fetchMoreItems(false);
+                    }}
+                  >
+                    See less
+                  </MenuButton>
+                )}
+              </ButtonsContainer>
+            )}
+          </>
+        )}
+      {globalContext.isLoading && <Loader />}
       {error && <ErrorComponent />}
     </MainContainer>
   );
