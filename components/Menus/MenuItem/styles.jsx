@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bitter, kadwa } from "../../public/fonts/fonts";
+import { bitter, kadwa } from "../../../public/fonts/fonts";
 
 export const MenuItemContainer = styled.li`
   width: 100%;
@@ -17,7 +17,7 @@ export const MenuItemContainer = styled.li`
 export const MenuItemDecoration = styled.div`
   width: 21px;
   height: 40px;
-  margin: 0px 30px;
+  margin: 0px 0px;
 `;
 
 export const MenuItemTitleContainer = styled.div`
@@ -30,7 +30,7 @@ export const MenuItemSubtitle = styled.h3`
   font-family: ${bitter.style.fontFamily};
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 19px;
   text-transform: capitalize;
 `;
@@ -39,7 +39,11 @@ export const MenuItemTitle = styled.h2`
   font-family: ${kadwa.style.fontFamily};
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25em;
   line-height: 40px;
   text-transform: uppercase;
+
+  &:hover {
+    color: #d3ac5c;
+  }
 `;

@@ -1,7 +1,7 @@
 import MenuItem from "../MenuItem/MenuItem";
 import { MenuContainer } from "./styles";
 
-const Menu = ({ categories }) => {
+const IndexMenu = ({ categories }) => {
   return (
     <MenuContainer>
       {categories.length > 0 &&
@@ -19,4 +19,4 @@ const Menu = ({ categories }) => {
   );
 };
 
-export default Menu;
+export default IndexMenu;

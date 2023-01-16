@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { MenuContainer } from "./styles";
 import { MenuItem } from "../HamburgerMenu/styles";
-import { menuCategories } from "../../storage/storage";
+import { menuCategories } from "../../../storage/storage.js";
 import Image from "next/image";
 import Link from "next/link";
 import { DarkModeToggle } from "../HamburgerMenu/styles";
-import { GlobalContext } from "../../storage/global";
+import { GlobalContext } from "../../../storage/global";
 
 const DesktopMenu = () => {
   const globalContext = useContext(GlobalContext);

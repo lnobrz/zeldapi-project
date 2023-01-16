@@ -7,7 +7,7 @@ import {
 } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
-import { GlobalContext } from "../../storage/global";
+import { GlobalContext } from "../../../storage/global";
 import { useContext } from "react";
 
 const MenuItem = ({ url, itemSubtitle, itemTitle }) => {
