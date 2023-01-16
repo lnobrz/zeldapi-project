@@ -63,6 +63,7 @@ const SearchBar = ({
         type="text"
         name="search"
         id="searchInput"
+        autoComplete="off"
         className={
           globalContext.lightTheme
             ? "lightThemeFontColor"
