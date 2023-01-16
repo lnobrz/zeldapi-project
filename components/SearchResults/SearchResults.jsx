@@ -13,24 +13,21 @@ export const SearchResults = ({
 }) => {
   const globalContext = useContext(GlobalContext);
 
-  useEffect(() => console.log(summarizedResults));
   return (
     <>
       {summarizedResults.map((result) => {
         return (
-          <>
-            <MenuItem
-              key={result.id}
-              onClick={() => renderModalFunction(result.id)}
-              className={
-                globalContext.lightTheme
-                  ? "lightThemeFontColor"
-                  : "darkThemeFontColor"
-              }
-            >
-              {result.name}
-            </MenuItem>
-          </>
+          <MenuItem
+            key={result.id}
+            onClick={() => renderModalFunction(result.id)}
+            className={
+              globalContext.lightTheme
+                ? "lightThemeFontColor"
+                : "darkThemeFontColor"
+            }
+          >
+            {result.name}
+          </MenuItem>
         );
       })}
 
