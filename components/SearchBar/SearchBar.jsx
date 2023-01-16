@@ -25,7 +25,7 @@ const SearchBar = ({
       .replace(",", "%20");
 
     fetch(
-      `http://zelda.fanapis.com/api/${category}?name=${inputContent}&limit=50`
+      `https://zelda.fanapis.com/api/${category}?name=${inputContent}&limit=50`
     )
       .then((res) => res.json())
       .then((res) => {

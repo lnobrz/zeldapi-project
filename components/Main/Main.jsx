@@ -44,7 +44,7 @@ const Main = ({ category, title, items, error }) => {
   const fetchModalInfo = (id) => {
     try {
       globalContext.setIsLoading(true);
-      fetch(`http://zelda.fanapis.com/api/${category}/${id}`)
+      fetch(`https://zelda.fanapis.com/api/${category}/${id}`)
         .then((res) => res.json())
         .then((res) => {
           setChosenItem(res.data);
@@ -62,7 +62,7 @@ const Main = ({ category, title, items, error }) => {
       globalContext.setIsLoading(true);
       try {
         fetch(
-          `http://zelda.fanapis.com/api/${category}?limit=50&page=${nextApiPage}`
+          `https://zelda.fanapis.com/api/${category}?limit=50&page=${nextApiPage}`
         )
           .then((res) => res.json())
           .then((res) => {
@@ -91,7 +91,7 @@ const Main = ({ category, title, items, error }) => {
         .replace(",", "%20");
       try {
         fetch(
-          `http://zelda.fanapis.com/api/${category}?name=${itemName}&limit=50&page=${nextSearchPage}`
+          `https://zelda.fanapis.com/api/${category}?name=${itemName}&limit=50&page=${nextSearchPage}`
         )
           .then((res) => res.json())
           .then((res) => setFoundItems([...foundItems, ...res.data]))
