@@ -8,6 +8,7 @@ export const Menu = styled.ul`
   align-items: center;
   justify-content: start;
   flex-flow: column wrap;
+  text-align: center;
 
   @media (min-width: 744px) {
     flex-flow: row wrap;
