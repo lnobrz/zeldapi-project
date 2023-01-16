@@ -18,6 +18,7 @@ export const GlobalStorage = ({ children }) => {
   };
 
   const getDevice = () => {
+    window.innerWidth < 744 ? setIsMobile(true) : setIsMobile(false);
     window.addEventListener("resize", () => {
       window.innerWidth < 744 ? setIsMobile(true) : setIsMobile(false);
     });
