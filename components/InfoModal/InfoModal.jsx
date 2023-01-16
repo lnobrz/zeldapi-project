@@ -14,11 +14,14 @@ import { GlobalContext } from "../../storage/global";
 import { useContext } from "react";
 import ErrorComponent from "../Error/ErrorComponent";
 import { Animated } from "react-animated-css";
+import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 
 const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
   const globalContext = useContext(GlobalContext);
   const [itemAppearances, setItemAppearances] = useState([]);
-  const [itemInhabitants, setItemInnhabitants] = useState([]);
+  const [itemInhabitants, setItemInhabitants] = useState([]);
+  const [itemDungeons, setItemDungeons] = useState([]);
+  const [itemGames, setItemGames] = useState([]);
 
   const itemDetails = item
     ? Object.entries(item).filter(
@@ -27,7 +30,9 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
           detail[0] !== "description" &&
           detail[0] !== "id" &&
           detail[0] !== "appearances" &&
-          detail[0] !== "inhabitants"
+          detail[0] !== "inhabitants" &&
+          detail[0] !== "dungeons" &&
+          detail[0] !== "games"
       )
     : null;
 
@@ -36,35 +41,27 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
     document.querySelector("body").classList.remove("noScroll");
   };
 
-  const fetchInfo = useCallback(async () => {
-    if (item) {
-      if (item.inhabitants) {
-        const inhabitantsResponse = await Promise.all(
-          item.inhabitants.map((url) =>
+  const fetchInfo = useCallback(
+    async (category, dataSetter) => {
+      if (item[category]) {
+        const fetchResponse = await Promise.all(
+          item[category].map((url) =>
             fetch(url)
               .then((res) => res.json())
-              .then((inhabitant) => inhabitant.data)
+              .then((res) => res.data)
           )
         );
-
-        setItemInnhabitants(inhabitantsResponse);
+        dataSetter(fetchResponse);
       }
-
-      if (item.appearances) {
-        const appearanceResponse = await Promise.all(
-          item.appearances.map((url) =>
-            fetch(url)
-              .then((res) => res.json())
-              .then((appearance) => appearance.data)
-          )
-        );
-        setItemAppearances(appearanceResponse);
-      }
-    }
-  }, [item]);
+    },
+    [item]
+  );
 
   useEffect(() => {
-    fetchInfo();
+    fetchInfo("appearances", setItemAppearances);
+    fetchInfo("inhabitants", setItemInhabitants);
+    fetchInfo("dungeons", setItemDungeons);
+    fetchInfo("games", setItemGames);
   }, [fetchInfo]);
 
   return (
@@ -132,62 +129,22 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
                     </ItemCategory>
                   ))}
                   {itemAppearances && itemAppearances.length > 0 && (
-                    <Animated
-                      animationIn="fadeIn"
-                      animationOut="fadeOut"
-                      isVisible={true}
-                    >
-                      <ItemCategory
-                        className={
-                          globalContext.lightTheme
-                            ? "lightThemeFontColor"
-                            : "darkThemeFontColor"
-                        }
-                      >
-                        appearances:
-                        {itemAppearances.map((appearance) => (
-                          <ItemInfo
-                            key={appearance.id}
-                            className={
-                              globalContext.lightTheme
-                                ? "lightThemeFontColor"
-                                : "darkThemeFontColor"
-                            }
-                          >
-                            {appearance.name}
-                          </ItemInfo>
-                        ))}
-                      </ItemCategory>
-                    </Animated>
+                    <AdditionalInfo
+                      category="appearances"
+                      data={itemAppearances}
+                    />
+                  )}
+                  {itemGames && itemGames.length > 0 && (
+                    <AdditionalInfo category="games" data={itemGames} />
+                  )}
+                  {itemDungeons && itemDungeons.length > 0 && (
+                    <AdditionalInfo category="dungeons" data={itemDungeons} />
                   )}
                   {itemInhabitants && itemInhabitants.length > 0 && (
-                    <Animated
-                      animationIn="fadeIn"
-                      animationOut="fadeOut"
-                      isVisible={true}
-                    >
-                      <ItemCategory
-                        className={
-                          globalContext.lightTheme
-                            ? "lightThemeFontColor"
-                            : "darkThemeFontColor"
-                        }
-                      >
-                        inhabitants:
-                        {itemAppearances.map((inhabitant) => (
-                          <ItemInfo
-                            key={inhabitant.id}
-                            className={
-                              globalContext.lightTheme
-                                ? "lightThemeFontColor"
-                                : "darkThemeFontColor"
-                            }
-                          >
-                            {inhabitant.name}
-                          </ItemInfo>
-                        ))}
-                      </ItemCategory>
-                    </Animated>
+                    <AdditionalInfo
+                      category="inhabitants"
+                      data={itemInhabitants}
+                    />
                   )}
                   <ItemDescription
                     className={
