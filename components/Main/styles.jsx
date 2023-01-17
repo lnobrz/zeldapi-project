@@ -40,6 +40,15 @@ export const MenuItem = styled.li`
   font-size: 1em;
   line-height: 19px;
   cursor: pointer;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -animation-delay: 0ms;
+  -animation-duration: 1000ms;
+  pointer-events: all;
 
   &:hover {
     border: 2px solid #d3ac5c;

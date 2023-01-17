@@ -13,7 +13,6 @@ import Image from "next/image";
 import { GlobalContext } from "../../storage/global";
 import { useContext } from "react";
 import ErrorComponent from "../Error/ErrorComponent";
-import { Animated } from "react-animated-css";
 import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 
 const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
@@ -68,15 +67,12 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
     <>
       {renderModal && (
         <ModalBackground>
-          <Animated
-            animationIn="fadeIn"
-            animationOut="fadeOut"
-            isVisible={true}
-            className={`${
+          <ModalContainer
+            className={`animated ${
               globalContext.lightTheme ? "lightThemeBg" : "darkThemeBg"
-            } modalContainer`}
+            }`}
           >
-            <ModalButton onClick={closeModal}>
+            <ModalButton onClick={closeModal} className="animated">
               <Image
                 src={
                   globalContext.lightTheme
@@ -88,7 +84,7 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
                 height={30}
               />
             </ModalButton>
-            <InfoContainer>
+            <InfoContainer className="animated">
               {error && (
                 <ErrorComponent
                   title="SOMETHING WENT WRONG"
@@ -98,23 +94,22 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
               {item && (
                 <>
                   <ItemName
-                    className={
+                    className={`animated ${
                       globalContext.lightTheme
                         ? "lightThemeFontColor"
                         : "darkThemeFontColor"
-                    }
+                    }`}
                   >
                     {item.name}
                   </ItemName>
                   {itemDetails.map((detail) => (
                     <ItemCategory
                       key={detail[0]}
-                      c
-                      className={
+                      className={`animated ${
                         globalContext.lightTheme
                           ? "lightThemeFontColor"
                           : "darkThemeFontColor"
-                      }
+                      }`}
                     >
                       {detail[0]}:
                       <ItemInfo
@@ -147,18 +142,18 @@ const InfoModal = ({ renderModal, renderModalSetter, item, error }) => {
                     />
                   )}
                   <ItemDescription
-                    className={
+                    className={`animated ${
                       globalContext.lightTheme
                         ? "lightThemeFontColor"
                         : "darkThemeFontColor"
-                    }
+                    }`}
                   >
                     {item.description}
                   </ItemDescription>
                 </>
               )}
             </InfoContainer>
-          </Animated>
+          </ModalContainer>
         </ModalBackground>
       )}
     </>

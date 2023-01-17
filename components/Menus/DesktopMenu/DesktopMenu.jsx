@@ -51,7 +51,7 @@ const DesktopMenu = () => {
             </MenuItem>
           );
         })}
-        <ThemeToggle onClick={lightThemeToggle}>
+        <ThemeToggle onClick={lightThemeToggle} className="animated">
           <Image
             src={
               globalContext.lightTheme

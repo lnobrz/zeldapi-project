@@ -2,7 +2,6 @@ import { useContext, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { GlobalContext } from "../../storage/global";
 import { SearchBarContainer } from "./styles";
-import { Animated } from "react-animated-css";
 
 const SearchBar = ({
   category,
@@ -63,12 +62,7 @@ const SearchBar = ({
   }, []);
 
   return (
-    <Animated
-      animationIn="fadeIn"
-      animationOut="fadeOut"
-      isVisible={true}
-      className="searchBarContainer"
-    >
+    <SearchBarContainer className="animated">
       <input
         type="text"
         name="search"
@@ -101,7 +95,7 @@ const SearchBar = ({
         onClick={() => searchInput(category)}
         id="searchButton"
       />
-    </Animated>
+    </SearchBarContainer>
   );
 };
 

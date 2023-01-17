@@ -7,9 +7,9 @@ const Loader = () => {
 
   return (
     <LoaderContainer
-      className={
+      className={`animated ${
         globalContext.lightTheme ? "lightThemeFontColor" : "darkThemeFontColor"
-      }
+      }`}
     >
       Loading...
     </LoaderContainer>

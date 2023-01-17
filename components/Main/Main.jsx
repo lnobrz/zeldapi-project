@@ -7,7 +7,6 @@ import { MainContainer, Title } from "../IndexMain/styles";
 import { MenuItem, Menu, MenuButton, ButtonsContainer } from "./styles";
 import { GlobalContext } from "../../storage/global";
 import Loader from "../Loader/Loader";
-import { Animated } from "react-animated-css";
 
 const Main = ({ category, title, items, error }) => {
   const globalContext = useContext(GlobalContext);
@@ -142,21 +141,15 @@ const Main = ({ category, title, items, error }) => {
         summarizedItems &&
         summarizedItems.length > 0 && (
           <>
-            <Animated
-              animationIn="fadeIn"
-              animationOut="fadeOut"
-              isVisible={true}
+            <Title
+              className={`animated ${
+                globalContext.lightTheme
+                  ? "lightThemeFontColor"
+                  : "darkThemeFontColor"
+              }`}
             >
-              <Title
-                className={
-                  globalContext.lightTheme
-                    ? "lightThemeFontColor"
-                    : "darkThemeFontColor"
-                }
-              >
-                {title}
-              </Title>
-            </Animated>
+              {title}
+            </Title>
 
             <SearchBar
               category={category}
@@ -183,12 +176,10 @@ const Main = ({ category, title, items, error }) => {
                 showFoundItems &&
                 summarizedFoundItems &&
                 summarizedFoundItems.length === 0 && (
-                  <>
-                    <ErrorComponent
-                      title="NOT FOUND"
-                      message="The item you’re searching for doesn’t exists in our database. If you’re sure it exists, make sure you’ve typed it correctly."
-                    />
-                  </>
+                  <ErrorComponent
+                    title="NOT FOUND"
+                    message="The item you’re searching for doesn’t exists in our database. If you’re sure it exists, make sure you’ve typed it correctly."
+                  />
                 )}
               {!globalContext.isLoading &&
                 !showFoundItems &&
@@ -212,11 +203,11 @@ const Main = ({ category, title, items, error }) => {
             {!globalContext.isLoading && !showFoundItems && summarizedItems && (
               <ButtonsContainer>
                 <MenuButton
-                  className={
+                  className={`animated ${
                     globalContext.lightTheme
                       ? "lightThemeFontColor"
                       : "darkThemeFontColor"
-                  }
+                  }`}
                   onClick={() => {
                     fetchMoreItems(true);
                   }}
@@ -225,11 +216,11 @@ const Main = ({ category, title, items, error }) => {
                 </MenuButton>
                 {maxDisplayedItemsAmount > displayedItemsAmount && (
                   <MenuButton
-                    className={
+                    className={`animated ${
                       globalContext.lightTheme
                         ? "lightThemeFontColor"
                         : "darkThemeFontColor"
-                    }
+                    }`}
                     onClick={() => {
                       fetchMoreItems(false);
                     }}

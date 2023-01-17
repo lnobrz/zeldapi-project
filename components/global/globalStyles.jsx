@@ -188,18 +188,7 @@ export const GlobalStyle = createGlobalStyle`
   .returnButton {
     margin-bottom: 34px;
   }
-
-  .modalContainer {
-      width: 80%;
-    height: 80%;
-    border: 2px solid #b99047;
-    position: relative;
-    display: flex;
-    flex-flow: row wrap;
-    overflow-y: auto;
-    justify-content: center;
-  }
-
+  
   .searchBarContainer {
     width: 80%;
     height: 65px;
@@ -207,4 +196,16 @@ export const GlobalStyle = createGlobalStyle`
     margin-bottom: 30px;
     position: relative;
   }
+
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -animation-delay: 0ms;
+    -animation-duration: 1000ms;
+    pointer-events: all;
+}
 `;

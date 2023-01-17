@@ -6,7 +6,7 @@ const ErrorComponent = ({ title, message }) => {
   const globalContext = useContext(GlobalContext);
 
   return (
-    <ErrorContainer>
+    <ErrorContainer className="animated">
       <ErrorTitle
         className={
           globalContext.lightTheme

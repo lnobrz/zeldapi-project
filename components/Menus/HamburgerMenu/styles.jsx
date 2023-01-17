@@ -42,6 +42,15 @@ export const MenuItem = styled.li`
   text-transform: uppercase;
   text-align: center;
   margin-top: 20px !important;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -animation-delay: 0ms;
+  -animation-duration: 1000ms;
+  pointer-events: all;
 
   &:first-child {
     margin-top: 40px !important;
