@@ -1,10 +1,8 @@
 # Zeldapi Project
 
-## A webapp where you can find everything about The Legend of Zelda's universe
+## A webapp where you can find everything about The Legend of Zelda universe
 
-Zeldapi is a SPA where you can dive deep into the universe of Legend of Zelda, since this application displays thousands of datas about this franchise. In Zeldapi, you'll be able to:
-
-- Browse into informations about:
+Zeldapi Project is a SPA where you can dive deep into the universe of Legend of Zelda, since this application displays thousands of informations about this franchise. In Zeldapi Project you'll be able to browse into infos of:
 
   - bosses
   - characters
@@ -14,11 +12,11 @@ Zeldapi is a SPA where you can dive deep into the universe of Legend of Zelda, s
   - monsters
   - places
 
-- Furthermore, if you don't to lose too much time by searching through thousands of items, you can simply use the search bar that is presented in my app
+Furthermore, if you don't want to lose too much time by searching through thousands of items, you can simply use the application search bar
 
-## About the API
+## Credits to zelda-api
 
-All the informations presented in this site are being fetched from zelda-api, that you can read the docs here: https://docs.zelda.fanapis.com/docszelda-api
+All the informations presented in this site are being fetched from zelda-api, read the full documentation here: https://docs.zelda.fanapis.com/docszelda-api
 
 ## Stacks
 
@@ -28,28 +26,26 @@ All the informations presented in this site are being fetched from zelda-api, th
 - Styled Components
 - React Animated CSS
 
-## How run this application locally
+## How to run this application locally
 
 1. clone this repository
-2. inside the project's diretorym, run "npm install" in the terminal
+2. inside the project directory, run "npm install" in the terminal
 3. run "npm run dev" to run locally in development mode
 
-## How to acsess this application remotelly
+## How to access this application remotelly
 
-1. you can access Zeldapi Project here: (url)
+You can access Zeldapi Project here: https://zeldapi-project.vercel.app
 
-## Important Informations
+## Important informations
 
-- Project's layout was FULLY inspired by The Legend Of Zelda website - https://www.zelda.com/
+- Project layout was fully inspired by The Legend Of Zelda official website: https://www.zelda.com/
 - I do not own any rights about the images that was used in Zeldapi Project
-- All the code inside this repository is mine
+- All the code inside this repository is mine and was fully made by myself
 - This project was made for professional and educational purposes
 
-## Found bugs? Please, let me know!
-
-If you've found a bug or even has some improvement suggestions, contact me!
-
 ## Contact me!
+
+Found any bugs, has some improvement suggestion or liked my job and want to reach me? Go ahead:
 
 - linkedin: https://www.linkedin.com/in/lucas-nobrz/
 - email: lucasnobre37@outlook.com
