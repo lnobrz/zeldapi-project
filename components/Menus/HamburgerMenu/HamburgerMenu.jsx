@@ -103,7 +103,11 @@ const HamburgerMenu = () => {
                       height={40}
                     />
                   </ThemeToggle>
-                  {globalContext.lightTheme ? <p>Dark</p> : <p>Light</p>}
+                  {globalContext.lightTheme ? (
+                    <p style={{ alignSelf: "center" }}>Dark</p>
+                  ) : (
+                    <p style={{ alignSelf: "center" }}>Light</p>
+                  )}
                 </MenuItem>
               </ul>
             </Animated>

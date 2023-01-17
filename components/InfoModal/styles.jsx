@@ -80,8 +80,8 @@ export const ItemDescription = styled.p`
 
 export const ModalButton = styled.button`
   background: none;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   border: none;
   pointer-events: auto;
   cursor: pointer;
