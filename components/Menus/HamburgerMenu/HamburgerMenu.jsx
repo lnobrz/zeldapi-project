@@ -32,18 +32,20 @@ const HamburgerMenu = () => {
   return (
     <>
       {!showMenu ? (
-        <MenuButton onClick={showMenuToggle}>
-          <Image
-            src={
-              globalContext.lightTheme
-                ? "/icons/light-theme/light-theme-hamburger-menu.svg"
-                : "/icons/dark-theme/dark-theme-hamburger-menu.svg"
-            }
-            alt="hamburger menu icon"
-            width={30}
-            height={30}
-          />
-        </MenuButton>
+        <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+          <MenuButton onClick={showMenuToggle}>
+            <Image
+              src={
+                globalContext.lightTheme
+                  ? "/icons/light-theme/light-theme-hamburger-menu.svg"
+                  : "/icons/dark-theme/dark-theme-hamburger-menu.svg"
+              }
+              alt="hamburger menu icon"
+              width={30}
+              height={30}
+            />
+          </MenuButton>
+        </Animated>
       ) : (
         <>
           <Animated
