@@ -17,7 +17,7 @@ export const MenuItemContainer = styled.li`
 export const MenuItemDecoration = styled.div`
   width: 21px;
   height: 40px;
-  margin: 0px 0px;
+  margin: 0px 30px;
 `;
 
 export const MenuItemTitleContainer = styled.div`

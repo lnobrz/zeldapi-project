@@ -14,7 +14,7 @@ const MenuItem = ({ url, itemSubtitle, itemTitle }) => {
   const globalContext = useContext(GlobalContext);
 
   return (
-    <MenuItemContainer>
+    <MenuItemContainer className="animated">
       <MenuItemDecoration>
         <Image
           src="/illustrations/corner-decorator-left.png"
