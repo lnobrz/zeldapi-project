@@ -48,10 +48,12 @@ const Main = ({ category, title, items, error }) => {
         .then((res) => res.json())
         .then((res) => {
           setChosenItem(res.data);
-          return res;
         })
-        .then((res) => console.log(res.data, res))
-        .then(() => globalContext.setIsLoading(false));
+        .then(() => {
+          globalContext.setIsLoading(false);
+          setShowModal(true);
+          document.querySelector("body").classList.add("noScroll");
+        });
     } catch (err) {
       console.log(err);
     }
@@ -107,8 +109,6 @@ const Main = ({ category, title, items, error }) => {
 
   const renderModal = (id) => {
     fetchModalInfo(id);
-    setShowModal(true);
-    document.querySelector("body").classList.add("noScroll");
   };
 
   const returnToMainMenu = () => {
