@@ -159,7 +159,44 @@ export const GlobalStyle = createGlobalStyle`
 
   .link {
     text-decoration: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    &:before {
+      background: url("/illustrations/corner-decorator-left.png");
+      background-repeat: no-repeat;
+      content: '';
+      transition: transform 1.0s ease;
+      width: 36px;
+      height: 54px;
+      position: absolute;
+      left: -50px;
+      top: 0px;
+    }
+
+    &:after {
+      background: url("/illustrations/corner-decorator-right.png");
+      background-repeat: no-repeat;
+      content: '';
+      transition: transform 1.0s ease;
+      width: 36px;
+      height: 54px;
+      position: absolute;
+      right: -50px;
+      top: 0px;
   }
+
+    &:hover:after {
+      transform: translateX(0.5em);
+      transition-duration: 0.25s;
+    }
+         
+    &:hover:before {
+      transform: translateX(-0.5em);
+       transition-duration: 0.25s;
+    }
+}
 
   .footerLink {
     color: #F0F0F0;

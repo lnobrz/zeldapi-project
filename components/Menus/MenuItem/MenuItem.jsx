@@ -5,7 +5,6 @@ import {
   MenuItemSubtitle,
   MenuItemTitle,
 } from "./styles";
-import Image from "next/image";
 import Link from "next/link";
 import { GlobalContext } from "../../../storage/global";
 import { useContext } from "react";
@@ -15,14 +14,6 @@ const MenuItem = ({ url, itemSubtitle, itemTitle }) => {
 
   return (
     <MenuItemContainer className="animated">
-      <MenuItemDecoration>
-        <Image
-          src="/illustrations/corner-decorator-left.png"
-          alt="zeldapi logo"
-          width={20}
-          height={40}
-        />
-      </MenuItemDecoration>
       <Link href={url} className="link">
         <MenuItemTitleContainer>
           <MenuItemSubtitle
@@ -45,14 +36,6 @@ const MenuItem = ({ url, itemSubtitle, itemTitle }) => {
           </MenuItemTitle>
         </MenuItemTitleContainer>
       </Link>
-      <MenuItemDecoration>
-        <Image
-          src="/illustrations/corner-decorator-right.png"
-          alt="zeldapi logo"
-          width={20}
-          height={40}
-        />
-      </MenuItemDecoration>
     </MenuItemContainer>
   );
 };
