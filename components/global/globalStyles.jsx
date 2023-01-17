@@ -136,7 +136,7 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
 
     &:hover {
-      color: #D3AC5C;
+      color: #D3AC5C !important;
     }
   }
 

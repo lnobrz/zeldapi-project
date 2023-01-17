@@ -40,8 +40,8 @@ const HamburgerMenu = () => {
                 : "/icons/dark-theme/dark-theme-hamburger-menu.svg"
             }
             alt="hamburger menu icon"
-            width={20}
-            height={20}
+            width={30}
+            height={30}
           />
         </MenuButton>
       ) : (
@@ -59,8 +59,8 @@ const HamburgerMenu = () => {
                     : "/icons/dark-theme/dark-theme-close-icon.svg"
                 }
                 alt="hamburger menu icon"
-                width={20}
-                height={20}
+                width={30}
+                height={30}
               />
             </MenuButton>
           </Animated>

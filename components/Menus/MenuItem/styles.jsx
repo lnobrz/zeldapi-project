@@ -44,6 +44,6 @@ export const MenuItemTitle = styled.h2`
   text-transform: uppercase;
 
   &:hover {
-    color: #d3ac5c;
+    color: #d3ac5c !important;
   }
 `;

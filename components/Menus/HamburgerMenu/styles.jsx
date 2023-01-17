@@ -8,6 +8,7 @@ export const MenuButton = styled.button`
   border: none;
   pointer-events: auto;
   cursor: pointer;
+  padding: 5px;
 `;
 
 export const Menu = styled.nav`
