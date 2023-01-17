@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const MenuButton = styled.button`
   background: none;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   margin-right: 30px;
   border: none;
   pointer-events: auto;
   cursor: pointer;
-  padding: 5px;
 `;
 
 export const Menu = styled.nav`
