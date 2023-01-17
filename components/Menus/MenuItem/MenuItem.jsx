@@ -1,6 +1,5 @@
 import {
   MenuItemContainer,
-  MenuItemDecoration,
   MenuItemTitleContainer,
   MenuItemSubtitle,
   MenuItemTitle,
