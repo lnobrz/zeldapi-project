@@ -41,7 +41,7 @@ You can access Zeldapi Project here: https://zeldapi-project.vercel.app
 ## Important informations
 
 - Project layout was totally made by me. You can see the prototype here: https://www.figma.com/file/rdqINx1RZPqenCdjiusUbN/Untitled?node-
-- Layout creation was fully inspired in the official The Legend of Zelda website
+- Layout creation was fully inspired in the official The Legend of Zelda website: https://www.zelda.com/
 - I do not own any rights about the images that was used in Zeldapi Project
 - All the code inside this repository is mine and was fully made by myself
 - This project was made for professional and educational purposes
