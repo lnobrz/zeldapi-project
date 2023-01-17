@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { bitter, hyliaSerif, kadwa } from "../../public/fonts/fonts";
 
 export const BackgroundContainer = styled.section`
-  background-image: url("/illustrations/background-1.png");
+  background-image: url("/illustrations/mobile-background.jpg");
   background-size: cover;
   max-width: 100%;
-  height: 335px;
+  height: 600px;
   background-size: cover;
   background-repeat: no-repeat;
   border-bottom: 3px solid #d3ac5c;
 
-  @media (min-width: 744px) {
-    height: 600px;
+  @media (min-width: 1070px) {
+    background-image: url("/illustrations/background-1.png");
   }
 `;
 
