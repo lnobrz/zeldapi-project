@@ -1,9 +1,13 @@
+import Head from "next/head";
 import Cover from "../../components/Cover/Cover";
 import Main from "../../components/Main/Main";
 
 const Characters = (props) => {
   return (
     <>
+      <Head>
+        <title>Characters</title>
+      </Head>
       <Cover titleText="Characters" />
       <Main
         category="characters"
