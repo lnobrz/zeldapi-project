@@ -1,17 +1,10 @@
 import { LogoImage } from "./styles";
 import Image from "next/image";
 import { GlobalContext } from "../../storage/global";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 const Logo = () => {
   const globalContext = useContext(GlobalContext);
-
-  useEffect(() => {
-    globalContext.getDevice();
-    globalContext.fetchThemeInfo();
-    console.log("Oiiii");
-  }, [globalContext]);
-
   return (
     <LogoImage>
       <Image
