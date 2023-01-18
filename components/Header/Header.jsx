@@ -8,6 +8,11 @@ import DesktopMenu from "../Menus/DesktopMenu/DesktopMenu";
 const Header = () => {
   const globalContext = useContext(GlobalContext);
 
+  useEffect(() => {
+    globalContext.getDevice();
+    globalContext.fetchThemeInfo();
+  }, [globalContext]);
+
   return (
     <HeaderContainer
       className={globalContext.lightTheme ? "lightThemeBg" : "darkThemeBg"}
