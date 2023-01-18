@@ -8,6 +8,10 @@ export const MenuButton = styled.button`
   border: none;
   pointer-events: auto;
   cursor: pointer;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Menu = styled.nav`
