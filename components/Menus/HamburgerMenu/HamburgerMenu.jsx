@@ -41,6 +41,7 @@ const HamburgerMenu = () => {
             alt="hamburger menu icon"
             width={30}
             height={30}
+            style={{ marginLeft: "0px !important" }}
           />
         </MenuButton>
       ) : (
