@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { bitter } from "../../public/fonts/fonts";
+import { bitter, georgia } from "../../public/fonts/fonts";
 
 export const LoaderContainer = styled.h1`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   display: flex;
   justify-content: center;
   align-items: center;

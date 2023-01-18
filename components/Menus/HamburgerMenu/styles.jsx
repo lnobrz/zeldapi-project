@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { georgia } from "../../../public/fonts/fonts";
 
 export const MenuButton = styled.button`
   background: none;
@@ -33,7 +34,7 @@ export const MenuItem = styled.li`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  font-family: "Roboto";
+  font-family: "Roboto", ${georgia.style.fontFamily}, Times, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1em;

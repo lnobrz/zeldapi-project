@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { hyliaSerif, bitter } from "../../public/fonts/fonts";
+import { hyliaSerif, bitter, georgia } from "../../public/fonts/fonts";
 
 export const ErrorContainer = styled.section`
   height: 100%;
@@ -11,7 +11,8 @@ export const ErrorContainer = styled.section`
 `;
 
 export const ErrorTitle = styled.h1`
-  font-family: ${hyliaSerif.style.fontFamily};
+  font-family: ${hyliaSerif.style.fontFamily}, ${georgia.style.fontFamily},
+    Times, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 2em;
@@ -22,7 +23,8 @@ export const ErrorTitle = styled.h1`
 `;
 
 export const ErrorDescription = styled.p`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1em;

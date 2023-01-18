@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bitter } from "../../public/fonts/fonts";
+import { bitter, georgia } from "../../public/fonts/fonts";
 
 export const MainContainer = styled.main`
   width: 100%;
@@ -11,7 +11,8 @@ export const MainContainer = styled.main`
 `;
 
 export const Title = styled.h1`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 700;
   font-size: 1.5em;

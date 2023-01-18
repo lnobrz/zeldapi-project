@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bitter } from "../../public/fonts/fonts";
+import { bitter, georgia } from "../../public/fonts/fonts";
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -33,7 +33,8 @@ export const InfoContainer = styled.section`
 `;
 
 export const ItemName = styled.h1`
-  font-family: "Bitter";
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 700;
   font-size: 1.5em;
@@ -44,7 +45,8 @@ export const ItemName = styled.h1`
 `;
 
 export const ItemCategory = styled.div`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 900;
   font-size: 0.75em;
@@ -67,7 +69,8 @@ export const ItemDescription = styled.p`
   width: 80%;
   max-height: 250px;
   overflow: auto;
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1em;

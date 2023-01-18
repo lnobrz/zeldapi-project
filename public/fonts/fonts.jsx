@@ -1,7 +1,11 @@
-import { Kadwa, Bitter } from "@next/font/google";
+import { Kadwa, Bitter, Georgia } from "@next/font/google";
 import localFont from "@next/font/local";
 
 export const bitter = Bitter({
+  subsets: ["latin"],
+});
+
+export const georgia = Bitter({
   subsets: ["latin"],
 });
 

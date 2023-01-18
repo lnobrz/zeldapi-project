@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bitter } from "../../public/fonts/fonts";
+import { bitter, georgia } from "../../public/fonts/fonts";
 
 export const BackgroundContainer = styled.footer`
   width: 100%;
@@ -19,7 +19,8 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterTitle = styled.h1`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 700;
   font-size: 1em;
@@ -29,7 +30,8 @@ export const FooterTitle = styled.h1`
 `;
 
 export const ContactItem = styled.li`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 400;
   font-size: 0.75em;
@@ -47,7 +49,8 @@ export const RightsContainer = styled.div`
   width: 100%;
   height: 50px;
   background: linear-gradient(180deg, #032520 0%, #0b131b 100%);
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 500;
   font-size: 0.62em;

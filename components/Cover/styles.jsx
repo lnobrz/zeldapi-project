@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bitter, hyliaSerif, kadwa } from "../../public/fonts/fonts";
+import { bitter, hyliaSerif, georgia } from "../../public/fonts/fonts";
 
 export const BackgroundContainer = styled.section`
   background-image: url("/illustrations/mobile-background.jpg");
@@ -37,7 +37,8 @@ export const TextContainer = styled.div`
 `;
 
 export const PreTitle = styled.h2`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 400;
   font-size: 0.62em;
@@ -51,7 +52,8 @@ export const PreTitle = styled.h2`
 `;
 
 export const Title = styled.h1`
-  font-family: ${hyliaSerif.style.fontFamily};
+  font-family: ${hyliaSerif.style.fontFamily}, ${georgia.style.fontFamily},
+    Times, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 3em;
@@ -66,7 +68,8 @@ export const Title = styled.h1`
 `;
 
 export const MainText = styled.p`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1em;

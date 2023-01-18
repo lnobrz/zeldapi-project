@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bitter, kadwa } from "../../../public/fonts/fonts";
+import { bitter, kadwa, georgia } from "../../../public/fonts/fonts";
 
 export const MenuItemContainer = styled.li`
   width: 100%;
@@ -30,7 +30,8 @@ export const MenuItemTitleContainer = styled.div`
 `;
 
 export const MenuItemSubtitle = styled.h3`
-  font-family: ${bitter.style.fontFamily};
+  font-family: ${bitter.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1em;
@@ -40,7 +41,8 @@ export const MenuItemSubtitle = styled.h3`
 `;
 
 export const MenuItemTitle = styled.h2`
-  font-family: ${kadwa.style.fontFamily};
+  font-family: ${kadwa.style.fontFamily}, ${georgia.style.fontFamily}, Times,
+    serif;
   font-style: normal;
   font-weight: 700;
   font-size: 1.25em;
