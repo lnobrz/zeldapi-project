@@ -14,26 +14,28 @@ const SearchBar = ({
   const initialItemQuantity = globalContext.isMobile ? 6 : 8;
 
   const searchInput = useCallback(() => {
-    globalContext.setIsLoading(true);
-    maxItemQuantitySetter(initialItemQuantity);
-    const inputContent = input.current.value
-      .toLowerCase()
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .toString()
-      .replace(",", "%20");
+    if (input.current.value !== "") {
+      globalContext.setIsLoading(true);
+      maxItemQuantitySetter(initialItemQuantity);
+      const inputContent = input.current.value
+        .toLowerCase()
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .toString()
+        .replace(",", "%20");
 
-    fetch(
-      `https://zelda.fanapis.com/api/${category}?name=${inputContent}&limit=50`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        foundItemSetter(res.data);
-      })
-      .then(() => {
-        showFoundItemSetter(true);
-        globalContext.setIsLoading(false);
-      });
+      fetch(
+        `https://zelda.fanapis.com/api/${category}?name=${inputContent}&limit=50`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          foundItemSetter(res.data);
+        })
+        .then(() => {
+          showFoundItemSetter(true);
+          globalContext.setIsLoading(false);
+        });
+    }
   }, [
     category,
     showFoundItemSetter,
