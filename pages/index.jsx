@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Zeldapi - Home</title>
       </Head>
       <Cover
         preTitleText="Welcome to"

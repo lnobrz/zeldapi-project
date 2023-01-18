@@ -6,7 +6,7 @@ const Games = (props) => {
   return (
     <>
       <Head>
-        <title>Games</title>
+        <title>Zeldapi - Games</title>
       </Head>
       <Cover titleText="Games" />
       <Main

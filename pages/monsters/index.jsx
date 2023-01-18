@@ -6,7 +6,7 @@ const Monsters = (props) => {
   return (
     <>
       <Head>
-        <title>Monsters</title>
+        <title>Zeldapi - Monsters</title>
       </Head>
       <Cover titleText="Monsters" />
       <Main
