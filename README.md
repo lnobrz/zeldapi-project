@@ -18,7 +18,7 @@ Furthermore, if you don't want to lose too much time by searching through thousa
 
 ## Credits to zelda-api
 
-All the informations presented in this site are being fetched from zelda-api, read the full documentation here: https://docs.zelda.fanapis.com/docszelda-api
+All the informations presented in this site are being fetched from zelda-api, read the full documentation here: https://docs.zelda.fanapis.com/
 
 ## Stacks
 
