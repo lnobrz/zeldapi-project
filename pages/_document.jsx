@@ -16,9 +16,9 @@ const Document = (props) => {
   );
 };
 
-export const getInitialProps = ({ renderPage }) => {
+Document.getInitialProps = async ({ renderPage }) => {
   const sheet = new ServerStyleSheet();
-  const page = renderPage(
+  const page = await renderPage(
     (App) => (props) => sheet.collectStyles(<App {...props} />)
   );
   const styleTags = sheet.getStyleElement();
