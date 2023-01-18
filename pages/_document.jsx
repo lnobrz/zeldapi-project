@@ -1,28 +1,39 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-const Document = (props) => {
-  return (
-    <Html>
-      <Head>
-        <link rel="shortcut icon" href="/favicon.png" />
-        {props.styleTags}
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
-};
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
 
-Document.getInitialProps = async ({ renderPage }) => {
-  const sheet = new ServerStyleSheet();
-  const page = await renderPage(
-    (App) => (props) => sheet.collectStyles(<App {...props} />)
-  );
-  const styleTags = sheet.getStyleElement();
-  return { ...page, styleTags };
-};
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
 
-export default Document;
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: [initialProps.styles, sheet.getStyleElement()],
+      };
+    } finally {
+      sheet.seal();
+    }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head>
+          <link rel="icon" type="image/x-icon" href="/favicon.png"></link>
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
